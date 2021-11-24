@@ -72,12 +72,12 @@
 		AD78F113274D318900012EC4 /* MVVM Demo */ = {
 			isa = PBXGroup;
 			children = (
-				AD78F150274E3C6C00012EC4 /* Errors */,
 				AD78F134274D3D5100012EC4 /* Application */,
+				AD78F11D274D318C00012EC4 /* Assets.xcassets */,
+				AD78F150274E3C6C00012EC4 /* Errors */,
+				AD78F122274D318C00012EC4 /* Info.plist */,
 				AD78F137274D418400012EC4 /* View */,
 				AD78F139274D41CC00012EC4 /* ViewModel */,
-				AD78F11D274D318C00012EC4 /* Assets.xcassets */,
-				AD78F122274D318C00012EC4 /* Info.plist */,
 			);
 			path = "MVVM Demo";
 			sourceTree = "<group>";

@@ -10,12 +10,21 @@ import UIKit
 class MainViewController: UIViewController {
     
     var viewModel: MainViewModel?
-
+    @IBOutlet weak var buttonLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel?.delegate = self
+        buttonLabel.text = "Start!"
     }
-    
+        
     @IBAction func startButtonPressed(sender: UIButton) {
         viewModel?.presentNumbersListVC()
+    }
+}
+
+extension MainViewController: MainViewModelDelegate {
+    func titleWillChange(to title: String) {
+        buttonLabel.text = title
     }
 }

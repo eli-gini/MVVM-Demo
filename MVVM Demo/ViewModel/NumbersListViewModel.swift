@@ -10,6 +10,7 @@ import UIKit
 
 class NumbersListViewModel {
     
+    var willDismissController: (()-> Void)?
     private var errorMode: Bool = false
     
     func checkTextFieldInput(viewController: UIViewController, textField: UITextField)-> Int {
@@ -23,6 +24,10 @@ class NumbersListViewModel {
             errorModeSwitch(in: viewController)
             return 0
         }
+    }
+    
+    func returnToMain() {
+        willDismissController?()
     }
     
     private func showAlert(viewController: UIViewController, message: String) {

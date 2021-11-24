@@ -20,15 +20,19 @@ class MainCoordinator: Coordinator {
         let viewModel = MainViewModel()
         viewController.viewModel = viewModel
         viewModel.didPressStart = {
-            self.goToNumbersList()
+            self.goToNumbersList(delegate: viewModel)
         }
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    func goToNumbersList() {
+    func goToNumbersList(delegate: NumberListViewControllerDelegate) {
         let viewController = NumbersListViewController()
         let viewModel = NumbersListViewModel()
         viewController.viewModel = viewModel
+        viewController.delegate = delegate
+        viewModel.willDismissController = {
+            self.navigationController.popToRootViewController(animated: true)
+        }
         navigationController.pushViewController(viewController, animated: true)
         
     }

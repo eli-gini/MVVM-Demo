@@ -14,14 +14,19 @@ class NumbersListViewController: UIViewController {
     var numberOfRows = 0
     
     var viewModel: NumbersListViewModel?
+    weak var delegate: NumberListViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        numbersTableView.dataSource = self
-        numbersTableView.register(UINib(nibName: "NumberTableViewCell", bundle: nil), forCellReuseIdentifier: "numberCell")
-
+        setUpViewController()
     }
+    
+    private func setUpViewController() {
+        numbersTableView.dataSource = self
+        numbersTableView.delegate = self
+        numbersTableView.register(UINib(nibName: "NumberTableViewCell", bundle: nil), forCellReuseIdentifier: "numberCell")
+    }
+    
     @IBAction func goButtonTapped(_ sender: UIButton) {
         let numberTyped = viewModel?.checkTextFieldInput(viewController: self, textField: numbersTextField)
         if numberTyped != nil {
@@ -42,6 +47,15 @@ extension NumbersListViewController: UITableViewDataSource {
             return cell
         } else { return UITableViewCell() }
     }
-    
-    
+}
+
+extension NumbersListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.didSelectNumber(indexPath.row)
+        viewModel?.returnToMain()
+    }
+}
+
+protocol NumberListViewControllerDelegate: AnyObject {
+    func didSelectNumber(_ number: Int)
 }
