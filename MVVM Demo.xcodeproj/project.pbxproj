@@ -21,6 +21,8 @@
 		AD78F14E274E312C00012EC4 /* NumberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F14C274E312C00012EC4 /* NumberTableViewCell.swift */; };
 		AD78F14F274E312C00012EC4 /* NumberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD78F14D274E312C00012EC4 /* NumberTableViewCell.xib */; };
 		AD78F152274E3C8600012EC4 /* TextFieldError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F151274E3C8600012EC4 /* TextFieldError.swift */; };
+		AD78F159274E81CD00012EC4 /* NumberListViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F158274E81CD00012EC4 /* NumberListViewControllerDelegate.swift */; };
+		AD78F15B274E822700012EC4 /* MainViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F15A274E822700012EC4 /* MainViewModelDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		AD78F14C274E312C00012EC4 /* NumberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTableViewCell.swift; sourceTree = "<group>"; };
 		AD78F14D274E312C00012EC4 /* NumberTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberTableViewCell.xib; sourceTree = "<group>"; };
 		AD78F151274E3C8600012EC4 /* TextFieldError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldError.swift; sourceTree = "<group>"; };
+		AD78F158274E81CD00012EC4 /* NumberListViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberListViewControllerDelegate.swift; sourceTree = "<group>"; };
+		AD78F15A274E822700012EC4 /* MainViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +80,8 @@
 				AD78F11D274D318C00012EC4 /* Assets.xcassets */,
 				AD78F150274E3C6C00012EC4 /* Errors */,
 				AD78F122274D318C00012EC4 /* Info.plist */,
-				AD78F137274D418400012EC4 /* View */,
-				AD78F139274D41CC00012EC4 /* ViewModel */,
+				AD78F157274E81A000012EC4 /* Protocols */,
+				AD78F153274E80EF00012EC4 /* Screens */,
 			);
 			path = "MVVM Demo";
 			sourceTree = "<group>";
@@ -87,40 +91,9 @@
 			children = (
 				AD78F114274D318900012EC4 /* AppDelegate.swift */,
 				AD78F116274D318900012EC4 /* SceneDelegate.swift */,
-				AD78F13C274D426A00012EC4 /* Coordinator.swift */,
 				AD78F13E274D429000012EC4 /* MainCoordinator.swift */,
 			);
 			path = Application;
-			sourceTree = "<group>";
-		};
-		AD78F137274D418400012EC4 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				AD78F132274D3CE900012EC4 /* MainViewController.swift */,
-				AD78F140274D4A7B00012EC4 /* NumbersListViewController.swift */,
-				AD78F14C274E312C00012EC4 /* NumberTableViewCell.swift */,
-				AD78F138274D41AA00012EC4 /* NIBS */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		AD78F138274D41AA00012EC4 /* NIBS */ = {
-			isa = PBXGroup;
-			children = (
-				AD78F135274D3D6900012EC4 /* MainViewController.xib */,
-				AD78F141274D4A7B00012EC4 /* NumbersListViewController.xib */,
-				AD78F14D274E312C00012EC4 /* NumberTableViewCell.xib */,
-			);
-			path = NIBS;
-			sourceTree = "<group>";
-		};
-		AD78F139274D41CC00012EC4 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				AD78F13A274D41EE00012EC4 /* MainViewModel.swift */,
-				AD78F144274D4B6F00012EC4 /* NumbersListViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		AD78F150274E3C6C00012EC4 /* Errors */ = {
@@ -129,6 +102,55 @@
 				AD78F151274E3C8600012EC4 /* TextFieldError.swift */,
 			);
 			path = Errors;
+			sourceTree = "<group>";
+		};
+		AD78F153274E80EF00012EC4 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				AD78F155274E812300012EC4 /* NumbersListScreen */,
+				AD78F154274E80F800012EC4 /* MainScreen */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		AD78F154274E80F800012EC4 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				AD78F13A274D41EE00012EC4 /* MainViewModel.swift */,
+				AD78F132274D3CE900012EC4 /* MainViewController.swift */,
+				AD78F135274D3D6900012EC4 /* MainViewController.xib */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		AD78F155274E812300012EC4 /* NumbersListScreen */ = {
+			isa = PBXGroup;
+			children = (
+				AD78F144274D4B6F00012EC4 /* NumbersListViewModel.swift */,
+				AD78F140274D4A7B00012EC4 /* NumbersListViewController.swift */,
+				AD78F141274D4A7B00012EC4 /* NumbersListViewController.xib */,
+				AD78F156274E815700012EC4 /* NumberCell */,
+			);
+			path = NumbersListScreen;
+			sourceTree = "<group>";
+		};
+		AD78F156274E815700012EC4 /* NumberCell */ = {
+			isa = PBXGroup;
+			children = (
+				AD78F14D274E312C00012EC4 /* NumberTableViewCell.xib */,
+				AD78F14C274E312C00012EC4 /* NumberTableViewCell.swift */,
+			);
+			path = NumberCell;
+			sourceTree = "<group>";
+		};
+		AD78F157274E81A000012EC4 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				AD78F13C274D426A00012EC4 /* Coordinator.swift */,
+				AD78F158274E81CD00012EC4 /* NumberListViewControllerDelegate.swift */,
+				AD78F15A274E822700012EC4 /* MainViewModelDelegate.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,6 +227,7 @@
 			files = (
 				AD78F152274E3C8600012EC4 /* TextFieldError.swift in Sources */,
 				AD78F133274D3CE900012EC4 /* MainViewController.swift in Sources */,
+				AD78F15B274E822700012EC4 /* MainViewModelDelegate.swift in Sources */,
 				AD78F145274D4B6F00012EC4 /* NumbersListViewModel.swift in Sources */,
 				AD78F142274D4A7B00012EC4 /* NumbersListViewController.swift in Sources */,
 				AD78F13F274D429000012EC4 /* MainCoordinator.swift in Sources */,
@@ -212,6 +235,7 @@
 				AD78F13D274D426A00012EC4 /* Coordinator.swift in Sources */,
 				AD78F14E274E312C00012EC4 /* NumberTableViewCell.swift in Sources */,
 				AD78F117274D318900012EC4 /* SceneDelegate.swift in Sources */,
+				AD78F159274E81CD00012EC4 /* NumberListViewControllerDelegate.swift in Sources */,
 				AD78F13B274D41EE00012EC4 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

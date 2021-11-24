@@ -7,9 +7,7 @@
 
 import UIKit
 
-protocol MainViewModelDelegate: AnyObject {
-    func titleWillChange(to title: String)
-}
+
 
 class MainViewModel {
     
@@ -21,7 +19,7 @@ class MainViewModel {
         didPressStart?()
     }
     
-    func getStringNumber(_ number: Int)-> String {
+    private func getStringNumber(_ number: Int)-> String {
         return String(number)
     }
 }

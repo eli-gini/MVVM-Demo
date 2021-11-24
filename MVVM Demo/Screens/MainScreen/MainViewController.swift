@@ -10,7 +10,7 @@ import UIKit
 class MainViewController: UIViewController {
     
     var viewModel: MainViewModel?
-    @IBOutlet weak var buttonLabel: UILabel!
+    @IBOutlet private weak var buttonLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +18,7 @@ class MainViewController: UIViewController {
         buttonLabel.text = "Start!"
     }
         
-    @IBAction func startButtonPressed(sender: UIButton) {
+    @IBAction private func startButtonPressed(sender: UIButton) {
         viewModel?.presentNumbersListVC()
     }
 }

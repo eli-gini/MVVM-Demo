@@ -9,7 +9,7 @@ import UIKit
 
 class MainCoordinator: Coordinator {
     
-    var navigationController: UINavigationController
+    private var navigationController: UINavigationController
     
     init(navigator: UINavigationController) {
         self.navigationController = navigator
@@ -25,7 +25,7 @@ class MainCoordinator: Coordinator {
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    func goToNumbersList(delegate: NumberListViewControllerDelegate) {
+    private func goToNumbersList(delegate: NumberListViewControllerDelegate) {
         let viewController = NumbersListViewController()
         let viewModel = NumbersListViewModel()
         viewController.viewModel = viewModel

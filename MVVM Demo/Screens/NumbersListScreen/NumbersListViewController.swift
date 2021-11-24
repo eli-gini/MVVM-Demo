@@ -9,9 +9,9 @@ import UIKit
 
 class NumbersListViewController: UIViewController {
 
-    @IBOutlet weak var numbersTableView: UITableView!
-    @IBOutlet weak var numbersTextField: UITextField!
-    var numberOfRows = 0
+    @IBOutlet private weak var numbersTableView: UITableView!
+    @IBOutlet private weak var numbersTextField: UITextField!
+    private var numberOfRows = 0
     
     var viewModel: NumbersListViewModel?
     weak var delegate: NumberListViewControllerDelegate?
@@ -22,23 +22,21 @@ class NumbersListViewController: UIViewController {
     }
     
     private func setUpViewController() {
+        numbersTextField.delegate = self
         numbersTableView.dataSource = self
         numbersTableView.delegate = self
         numbersTableView.register(UINib(nibName: "NumberTableViewCell", bundle: nil), forCellReuseIdentifier: "numberCell")
     }
     
-    @IBAction func goButtonTapped(_ sender: UIButton) {
-        let numberTyped = viewModel?.checkTextFieldInput(viewController: self, textField: numbersTextField)
-        if numberTyped != nil {
-            numberOfRows = numberTyped!
-            numbersTableView.reloadData()
-        }
+    @IBAction private func goButtonTapped(_ sender: UIButton) {
+        viewModel?.userDidTapGoButton(viewController: self)
+        numbersTableView.reloadData()
     }
 }
 
 extension NumbersListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return numberOfRows
+        return viewModel?.validatedNumber ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -49,13 +47,15 @@ extension NumbersListViewController: UITableViewDataSource {
     }
 }
 
-extension NumbersListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.didSelectNumber(indexPath.row)
-        viewModel?.returnToMain()
+extension NumbersListViewController: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        viewModel?.userDidEnterText(text: numbersTextField.text)
     }
 }
 
-protocol NumberListViewControllerDelegate: AnyObject {
-    func didSelectNumber(_ number: Int)
+extension NumbersListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.didSelectNumber(indexPath.row)
+        viewModel?.willDismissController?()
+    }
 }

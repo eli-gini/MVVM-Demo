@@ -11,23 +11,28 @@ import UIKit
 class NumbersListViewModel {
     
     var willDismissController: (()-> Void)?
+    var validatedNumber: Int?
     private var errorMode: Bool = false
     
-    func checkTextFieldInput(viewController: UIViewController, textField: UITextField)-> Int {
-        guard let text = textField.text, let number = Int(text) else {
-            errorModeSwitch(in: viewController)
-            return 0
-        }
-        if number > 0 {
-            return number
+    func userDidEnterText(text: String?) {
+        if let number = validateNumericText(text: text) {
+            validatedNumber = number
         } else {
-            errorModeSwitch(in: viewController)
-            return 0
+            validatedNumber = nil
         }
     }
     
-    func returnToMain() {
-        willDismissController?()
+    func userDidTapGoButton(viewController: UIViewController) {
+        if validatedNumber == nil {
+            errorModeSwitch(in: viewController)
+        }
+    }
+    
+    private func validateNumericText(text: String?)-> Int? {
+        guard let text = text, let number = Int(text), number >= 0 else {
+            return nil
+        }
+        return number
     }
     
     private func showAlert(viewController: UIViewController, message: String) {
