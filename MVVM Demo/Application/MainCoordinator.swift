@@ -19,9 +19,8 @@ class MainCoordinator: Coordinator {
         let viewController = MainViewController()
         let viewModel = MainViewModel()
         viewController.viewModel = viewModel
-        viewModel.didPressStart = { [weak self] in
-            self?.goToNumbersList()
-            print("in number list")
+        viewModel.didPressStart = {
+            self.goToNumbersList()
         }
         navigationController.pushViewController(viewController, animated: true)
     }
@@ -30,7 +29,7 @@ class MainCoordinator: Coordinator {
         let viewController = NumbersListViewController()
         let viewModel = NumbersListViewModel()
         viewController.viewModel = viewModel
-        navigationController.present(viewController, animated: true)
+        navigationController.pushViewController(viewController, animated: true)
         
     }
 }
