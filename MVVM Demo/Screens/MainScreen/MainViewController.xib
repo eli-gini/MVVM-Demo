@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="MVVM_Demo" customModuleProvider="target">
             <connections>
                 <outlet property="buttonLabel" destination="Mzo-wo-4wN" id="Bhq-f4-YFB"/>
+                <outlet property="dataPassedButton" destination="BM4-Gd-WW9" id="Z6y-Ga-nda"/>
                 <outlet property="view" destination="GLv-Hm-3hG" id="noT-JP-lyE"/>
             </connections>
         </placeholder>
@@ -41,14 +42,27 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BM4-Gd-WW9">
+                    <rect key="frame" x="137.5" y="722" width="139.5" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="ZKM-KX-wBP"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Data Passed!">
+                        <fontDescription key="titleFontDescription" type="italicSystem" pointSize="20"/>
+                        <color key="baseForegroundColor" systemColor="labelColor"/>
+                    </buttonConfiguration>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="eYA-8v-HVc"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="eYA-8v-HVc" firstAttribute="bottom" secondItem="BM4-Gd-WW9" secondAttribute="bottom" constant="100" id="0mA-F2-jcW"/>
                 <constraint firstItem="Mzo-wo-4wN" firstAttribute="centerY" secondItem="GLv-Hm-3hG" secondAttribute="centerY" id="3x0-tm-89E"/>
                 <constraint firstItem="X4V-E4-xtu" firstAttribute="centerX" secondItem="GLv-Hm-3hG" secondAttribute="centerX" id="Pbc-DE-yZB"/>
                 <constraint firstItem="Mzo-wo-4wN" firstAttribute="centerX" secondItem="GLv-Hm-3hG" secondAttribute="centerX" id="R92-Ij-3cc"/>
                 <constraint firstItem="X4V-E4-xtu" firstAttribute="centerY" secondItem="GLv-Hm-3hG" secondAttribute="centerY" id="bvb-aQ-wuI"/>
+                <constraint firstItem="BM4-Gd-WW9" firstAttribute="centerX" secondItem="GLv-Hm-3hG" secondAttribute="centerX" id="zOP-ue-mNr"/>
             </constraints>
             <point key="canvasLocation" x="-815" y="92"/>
         </view>
