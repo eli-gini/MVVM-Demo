@@ -22,6 +22,9 @@ class MainCoordinator: Coordinator {
         viewModel.didPressStart = {
             self.goToNumbersList(delegate: viewModel)
         }
+        viewModel.didPressDataAdded = { (number) in
+            self.goToImagesCollectionView(numberOfCells: number)
+        }
         navigationController.pushViewController(viewController, animated: true)
     }
     
@@ -34,6 +37,12 @@ class MainCoordinator: Coordinator {
             self.navigationController.popToRootViewController(animated: true)
         }
         navigationController.pushViewController(viewController, animated: true)
-        
+    }
+    
+    private func goToImagesCollectionView(numberOfCells: Int) {
+        let viewController = ImagesCollectionViewController()
+        let viewModel = ImagesCollectionViewModel(numberOfCells: numberOfCells)
+        viewController.viewModel = viewModel
+        navigationController.pushViewController(viewController, animated: true)
     }
 }

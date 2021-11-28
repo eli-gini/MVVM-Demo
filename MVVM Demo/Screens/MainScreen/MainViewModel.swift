@@ -7,16 +7,22 @@
 
 import UIKit
 
-
-
 class MainViewModel {
     
     var delegate: MainViewModelDelegate?
     var didPressStart: (()->Void)?
-    
+    var didPressDataAdded: ((Int)->Void)?
+    private var numberToPass: Int?
     
     func presentNumbersListVC() {
         didPressStart?()
+    }
+    
+    func presentImagesCollectionVC() {
+        guard let number = numberToPass else {
+            return
+        }
+        didPressDataAdded?(number)
     }
     
     private func getStringNumber(_ number: Int)-> String {
@@ -25,7 +31,8 @@ class MainViewModel {
 }
 
 extension MainViewModel: NumberListViewControllerDelegate {
-    func didSelectNumber(_ number: Int) {
+    func didSelectNumber(number: Int) {
+        numberToPass = number
         let title = getStringNumber(number)
         delegate?.titleWillChange(to: title)
     }

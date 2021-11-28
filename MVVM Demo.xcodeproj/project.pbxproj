@@ -11,6 +11,11 @@
 		AD17DDC727536DB800806A8E /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17DDC627536DB800806A8E /* UILabelExtension.swift */; };
 		AD17DDC92753847400806A8E /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17DDC82753847400806A8E /* CGFloatExtension.swift */; };
 		AD17DDCB275385CE00806A8E /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17DDCA275385CE00806A8E /* UIColorExtension.swift */; };
+		AD17DDCF275389BF00806A8E /* ImagesCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17DDCE275389BF00806A8E /* ImagesCollectionViewModel.swift */; };
+		AD17DDD2275389FA00806A8E /* ImagesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17DDD0275389FA00806A8E /* ImagesCollectionViewController.swift */; };
+		AD17DDD3275389FA00806A8E /* ImagesCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD17DDD1275389FA00806A8E /* ImagesCollectionViewController.xib */; };
+		AD17DDD727538C6200806A8E /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17DDD527538C6200806A8E /* ImageCell.swift */; };
+		AD17DDD827538C6200806A8E /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD17DDD627538C6200806A8E /* ImageCell.xib */; };
 		AD78F115274D318900012EC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F114274D318900012EC4 /* AppDelegate.swift */; };
 		AD78F117274D318900012EC4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F116274D318900012EC4 /* SceneDelegate.swift */; };
 		AD78F11E274D318C00012EC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD78F11D274D318C00012EC4 /* Assets.xcassets */; };
@@ -36,6 +41,11 @@
 		AD17DDC627536DB800806A8E /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		AD17DDC82753847400806A8E /* CGFloatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
 		AD17DDCA275385CE00806A8E /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		AD17DDCE275389BF00806A8E /* ImagesCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCollectionViewModel.swift; sourceTree = "<group>"; };
+		AD17DDD0275389FA00806A8E /* ImagesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCollectionViewController.swift; sourceTree = "<group>"; };
+		AD17DDD1275389FA00806A8E /* ImagesCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImagesCollectionViewController.xib; sourceTree = "<group>"; };
+		AD17DDD527538C6200806A8E /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		AD17DDD627538C6200806A8E /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
 		AD78F111274D318900012EC4 /* MVVM Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MVVM Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD78F114274D318900012EC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD78F116274D318900012EC4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +86,26 @@
 				AD17DDCA275385CE00806A8E /* UIColorExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AD17DDCD2753899500806A8E /* ImagesCollectionViewScreen */ = {
+			isa = PBXGroup;
+			children = (
+				AD17DDCE275389BF00806A8E /* ImagesCollectionViewModel.swift */,
+				AD17DDD0275389FA00806A8E /* ImagesCollectionViewController.swift */,
+				AD17DDD1275389FA00806A8E /* ImagesCollectionViewController.xib */,
+				AD17DDD427538C2B00806A8E /* ImageCell */,
+			);
+			path = ImagesCollectionViewScreen;
+			sourceTree = "<group>";
+		};
+		AD17DDD427538C2B00806A8E /* ImageCell */ = {
+			isa = PBXGroup;
+			children = (
+				AD17DDD527538C6200806A8E /* ImageCell.swift */,
+				AD17DDD627538C6200806A8E /* ImageCell.xib */,
+			);
+			path = ImageCell;
 			sourceTree = "<group>";
 		};
 		AD78F108274D318900012EC4 = {
@@ -131,6 +161,7 @@
 		AD78F153274E80EF00012EC4 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				AD17DDCD2753899500806A8E /* ImagesCollectionViewScreen */,
 				AD78F155274E812300012EC4 /* NumbersListScreen */,
 				AD78F154274E80F800012EC4 /* MainScreen */,
 			);
@@ -257,6 +288,8 @@
 				AD78F14F274E312C00012EC4 /* NumberTableViewCell.xib in Resources */,
 				AD78F143274D4A7B00012EC4 /* NumbersListViewController.xib in Resources */,
 				AD78F11E274D318C00012EC4 /* Assets.xcassets in Resources */,
+				AD17DDD827538C6200806A8E /* ImageCell.xib in Resources */,
+				AD17DDD3275389FA00806A8E /* ImagesCollectionViewController.xib in Resources */,
 				AD78F136274D3D6900012EC4 /* MainViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,15 +343,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD17DDD2275389FA00806A8E /* ImagesCollectionViewController.swift in Sources */,
 				AD78F152274E3C8600012EC4 /* TextFieldError.swift in Sources */,
 				AD78F133274D3CE900012EC4 /* MainViewController.swift in Sources */,
 				AD17DDCB275385CE00806A8E /* UIColorExtension.swift in Sources */,
 				AD78F15B274E822700012EC4 /* MainViewModelDelegate.swift in Sources */,
+				AD17DDCF275389BF00806A8E /* ImagesCollectionViewModel.swift in Sources */,
 				AD78F145274D4B6F00012EC4 /* NumbersListViewModel.swift in Sources */,
 				AD78F142274D4A7B00012EC4 /* NumbersListViewController.swift in Sources */,
 				AD78F13F274D429000012EC4 /* MainCoordinator.swift in Sources */,
 				AD78F115274D318900012EC4 /* AppDelegate.swift in Sources */,
 				AD78F13D274D426A00012EC4 /* Coordinator.swift in Sources */,
+				AD17DDD727538C6200806A8E /* ImageCell.swift in Sources */,
 				AD17DDC727536DB800806A8E /* UILabelExtension.swift in Sources */,
 				AD78F14E274E312C00012EC4 /* NumberTableViewCell.swift in Sources */,
 				AD17DDC92753847400806A8E /* CGFloatExtension.swift in Sources */,

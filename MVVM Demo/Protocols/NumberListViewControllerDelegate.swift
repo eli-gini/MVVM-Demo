@@ -8,5 +8,5 @@
 import Foundation
 
 protocol NumberListViewControllerDelegate: AnyObject {
-    func didSelectNumber(_ number: Int)
+    func didSelectNumber(number: Int)
 }

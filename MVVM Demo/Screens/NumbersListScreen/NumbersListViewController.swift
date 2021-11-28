@@ -55,7 +55,7 @@ extension NumbersListViewController: UITextFieldDelegate {
 
 extension NumbersListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.didSelectNumber(indexPath.row)
+        delegate?.didSelectNumber(number: indexPath.row)
         viewModel?.willDismissController?()
     }
 }

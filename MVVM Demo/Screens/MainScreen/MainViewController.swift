@@ -21,7 +21,6 @@ class MainViewController: UIViewController {
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
@@ -43,8 +42,12 @@ class MainViewController: UIViewController {
         dataPassedButton.layer.shadowOpacity = 0.8
     }
         
-    @IBAction private func startButtonPressed(sender: UIButton) {
+    @IBAction private func startButtonTapped(sender: UIButton) {
         viewModel?.presentNumbersListVC()
+    }
+    
+    @IBAction func dataPassedButtonTapped(_ sender: UIButton) {
+        viewModel?.presentImagesCollectionVC()
     }
 }
 
