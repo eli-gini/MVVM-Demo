@@ -13,28 +13,28 @@ class MainViewController: UIViewController {
     @IBOutlet private weak var buttonLabel: UILabel!
     @IBOutlet private weak var dataPassedButton: UIButton!
     
-    private var tapCount = 0 {
-        didSet {
-            if tapCount % 6 == 0 {
-                self.view.backgroundColor = .random
-            }
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
     }
     
-    @objc private func countTaps() {
-        tapCount += 1
-    }
-    
     private func setUpView() {
         viewModel?.delegate = self
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(countTaps))
+        configureTapGesture()
+        configureDataPassedButton()
+    }
+    
+    @objc private func changeToRandomBackGroundColor() {
+        view.backgroundColor = .random
+    }
+    
+    private func configureTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeToRandomBackGroundColor))
+        tapGesture.numberOfTapsRequired = 6
         view.addGestureRecognizer(tapGesture)
-        buttonLabel.text = "Start!"
+    }
+    
+    private func configureDataPassedButton() {
         dataPassedButton.backgroundColor = .systemGreen
         dataPassedButton.layer.cornerRadius = 20
         dataPassedButton.layer.shadowColor = UIColor.gray.cgColor
@@ -46,7 +46,7 @@ class MainViewController: UIViewController {
         viewModel?.presentNumbersListVC()
     }
     
-    @IBAction func dataPassedButtonTapped(_ sender: UIButton) {
+    @IBAction private func dataPassedButtonTapped(_ sender: UIButton) {
         viewModel?.presentImagesCollectionVC()
     }
 }

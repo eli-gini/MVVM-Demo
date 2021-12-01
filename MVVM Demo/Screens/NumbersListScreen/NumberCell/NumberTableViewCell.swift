@@ -10,6 +10,7 @@ import UIKit
 class NumberTableViewCell: UITableViewCell {
 
     @IBOutlet weak var numberCellLabel: UILabel!
+    var viewModel: NumberCellViewModel?
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -14,8 +14,18 @@ class ImagesCollectionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpView()
+    }
+    
+    private func setUpView() {
         imagesCollectionView.dataSource = self
         imagesCollectionView.register(UINib(nibName: "ImageCell", bundle: nil), forCellWithReuseIdentifier: "imageCell")
+        
+        viewModel?.reloadTableViewClosure = { [weak self] in
+            DispatchQueue.main.async {
+                self?.imagesCollectionView.reloadData()
+            }
+        }
     }
 }
 
@@ -25,10 +35,18 @@ extension ImagesCollectionViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as? ImageCell {
-            viewModel?.getImageView{ cell.cellImageView.image = $0?.image }
+        if let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as? ImageCell,
+           let cellVM = viewModel?.getCellViewModel(at: indexPath) {
+            cell.delegate = self
+            cell.setUpViewModel(viewModel: cellVM)
             return cell
         } else { return UICollectionViewCell() }
+    }
+}
+
+extension ImagesCollectionViewController: ImageCellDelegate {
+    func didLoadImage(in cell: ImageCell) {
+        cell.cellImageView.image = cell.viewModel?.cellImage
     }
 }
 

@@ -29,7 +29,7 @@
                                 <constraint firstAttribute="height" constant="50" id="KSO-pg-pvh"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fu2-Vk-K7a">
                             <rect key="frame" x="339.5" y="22" width="64.5" height="46"/>
