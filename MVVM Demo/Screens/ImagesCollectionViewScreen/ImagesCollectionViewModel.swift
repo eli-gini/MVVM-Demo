@@ -7,20 +7,11 @@
 
 import UIKit
 
-protocol ImagesCollectionViewModelDelegate: AnyObject {
-    func didUpdateData()
-}
-
 class ImagesCollectionViewModel {
     
     private var selectedNumber: Int
-    weak var delegate: ImagesCollectionViewModelDelegate?
     
-    var cellViewModels: [ImageCellViewModel] = [] {
-        didSet {
-            delegate?.didUpdateData()
-        }
-    }
+    var cellViewModels: [ImageCellViewModel] = []
     
     init(selectedNumber: Int) {
         self.selectedNumber = selectedNumber
@@ -47,9 +38,6 @@ class ImagesCollectionViewModel {
 
 extension ImagesCollectionViewModel: ImagesCellParentViewModelDelegate {
     func didLongPress(imageCellViewModel: ImageCellViewModel) {
-        guard let index = cellViewModels.firstIndex(where: {$0 == imageCellViewModel}) else { return }
-        print("index: \(index)")
-        cellViewModels.remove(at: index)
-        delegate?.didUpdateData()
+        cellViewModels.removeAll(where: { $0 == imageCellViewModel })
     }
 }

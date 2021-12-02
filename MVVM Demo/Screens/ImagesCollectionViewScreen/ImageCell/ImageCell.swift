@@ -1,6 +1,6 @@
 //
 //  ImageCell.swift
-//  MVVM Demor
+//  MVVM Demo
 //
 //  Created by Eli Mehaudy on 28/11/2021.
 //
@@ -24,12 +24,11 @@ class ImageCell: UICollectionViewCell {
     }
     
     private func setUpLongPressGesture() {
-        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(longPress))
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(userDidLongPress))
         self.addGestureRecognizer(gesture)
     }
     
-    @objc private func longPress(sender: UILongPressGestureRecognizer) {
-        print(sender.state.rawValue)
+    @objc private func userDidLongPress(sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
             viewModel?.userDidLongPress()
         }

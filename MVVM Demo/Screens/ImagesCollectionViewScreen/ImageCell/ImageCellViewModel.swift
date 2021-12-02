@@ -20,12 +20,12 @@ class ImageCellViewModel {
     
     weak var parentViewModelDelegate: ImagesCellParentViewModelDelegate?
     weak var delegate: ImageCellViewModelDelegate?
-    private let uuid = UUID()
+    let uuid = UUID()
     private var hasLoadedImage = false
     
     func load() {
         if !hasLoadedImage {
-            let imageLoader = ImageLoaderWrapper()
+            let imageLoader = ImageDownloadService()
             imageLoader.fetchImage { [weak self] image in
                 if let image = image {
                     self?.hasLoadedImage = true
@@ -42,7 +42,12 @@ class ImageCellViewModel {
     }
 }
 
-extension ImageCellViewModel: Equatable {
+extension ImageCellViewModel: Hashable {
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(uuid)
+    }
+    
     static func == (lhs: ImageCellViewModel, rhs: ImageCellViewModel) -> Bool {
         return rhs.uuid == lhs.uuid
     }

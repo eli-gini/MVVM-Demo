@@ -9,7 +9,7 @@ import Foundation
 import EzImageLoader
 import EzHTTP
 
-class ImageLoaderWrapper {
+class ImageDownloadService {
     
     func fetchImage(completion: @escaping ((UIImage?)-> Void)) {
         ImageLoader.get("https://picsum.photos/200", nocache: true) {
