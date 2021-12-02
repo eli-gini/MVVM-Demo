@@ -17,16 +17,15 @@ class MainViewModel {
     var didPressStart: (()->Void)?
     var didPressDataAdded: ((Int)->Void)?
     private var numberToPass: Int?
-    private let number = 5
     
     func presentNumbersListVC() {
         didPressStart?()
     }
     
     func presentImagesCollectionVC() {
-//        guard let number = numberToPass else {
-//            return
-//        }
+        guard let number = numberToPass else {
+            return
+        }
         didPressDataAdded?(number)
     }
     

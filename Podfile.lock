@@ -1,0 +1,24 @@
+PODS:
+  - EzHTTP (3.6.1)
+  - EzImageLoader (3.5.1):
+    - EzHTTP
+  - IBAnimatable (6.1.0)
+
+DEPENDENCIES:
+  - EzImageLoader
+  - IBAnimatable
+
+SPEC REPOS:
+  trunk:
+    - EzHTTP
+    - EzImageLoader
+    - IBAnimatable
+
+SPEC CHECKSUMS:
+  EzHTTP: d8f7e50a69bbcd6ae4f9853692d6bc5cf92e598b
+  EzImageLoader: a930cbd57aaca0dbc3515ad3ff4639843d8658d9
+  IBAnimatable: 99dddd4c0625884a301ba3ecbc1615f8a390368e
+
+PODFILE CHECKSUM: 116f7f694eb344135928634fe06ff13c197c18b0
+
+COCOAPODS: 1.11.2
