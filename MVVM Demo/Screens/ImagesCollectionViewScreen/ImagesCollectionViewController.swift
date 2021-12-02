@@ -30,13 +30,20 @@ class ImagesCollectionViewController: UIViewController {
     private func setUpView() {
         applySnapshot()
         imagesCollectionView.register(UINib(nibName: "ImageCell", bundle: nil), forCellWithReuseIdentifier: "imageCell")
+        reloadData()
     }
     
     private func applySnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, ImageCellViewModel>()
-        snapshot.appendSections([0])
-        snapshot.appendItems(viewModel!.cellViewModels, toSection: 0)
-        dataSource.apply(snapshot, animatingDifferences: true)
+            var snapshot = NSDiffableDataSourceSnapshot<Int, ImageCellViewModel>()
+            snapshot.appendSections([0])
+            snapshot.appendItems(viewModel!.cellViewModels, toSection: 0)
+            dataSource.apply(snapshot, animatingDifferences: true)
+    }
+    
+    private func reloadData() {
+        viewModel?.updateCellViewModels = { [weak self] in
+            self?.applySnapshot()
+        }
     }
 }
 

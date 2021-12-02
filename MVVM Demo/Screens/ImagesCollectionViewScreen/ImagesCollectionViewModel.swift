@@ -10,6 +10,7 @@ import UIKit
 class ImagesCollectionViewModel {
     
     private var selectedNumber: Int
+    var updateCellViewModels: (()->())?
     
     var cellViewModels: [ImageCellViewModel] = []
     
@@ -39,5 +40,6 @@ class ImagesCollectionViewModel {
 extension ImagesCollectionViewModel: ImagesCellParentViewModelDelegate {
     func didLongPress(imageCellViewModel: ImageCellViewModel) {
         cellViewModels.removeAll(where: { $0 == imageCellViewModel })
+        updateCellViewModels?()
     }
 }

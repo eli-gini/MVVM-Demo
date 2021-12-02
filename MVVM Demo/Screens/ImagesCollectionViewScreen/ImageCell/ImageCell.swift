@@ -29,7 +29,7 @@ class ImageCell: UICollectionViewCell {
     }
     
     @objc private func userDidLongPress(sender: UILongPressGestureRecognizer) {
-        if sender.state == .began {
+        if sender.state == .ended {
             viewModel?.userDidLongPress()
         }
     }
