@@ -6,49 +6,50 @@
 //
 
 import UIKit
-import EzImageLoader
-import EzHTTP
+
+protocol ImagesCollectionViewModelDelegate: AnyObject {
+    func didUpdateData()
+}
 
 class ImagesCollectionViewModel {
     
     private var selectedNumber: Int
+    weak var delegate: ImagesCollectionViewModelDelegate?
     
-    var numberOfCells: Int {
-        return cellViewModels.count
-    }
-    
-    private var cellViewModels = [ImageCellViewModel]()
-    {
+    var cellViewModels: [ImageCellViewModel] = [] {
         didSet {
-            self.reloadTableViewClosure?()
+            delegate?.didUpdateData()
         }
     }
-    
-    var reloadTableViewClosure: (()->())?
     
     init(selectedNumber: Int) {
         self.selectedNumber = selectedNumber
+        makeCellViewModels()
     }
     
-    func initChildViewModel() {
-        for i in 0...selectedNumber {
+    private func makeCellViewModels() {
+        for _ in 0...selectedNumber {
             let newViewModel = ImageCellViewModel()
-            getImageView { image in
-                self.cellViewModels[i].cellImage = image
-            }
-            self.cellViewModels.append(newViewModel)
-        }
-    }
-    
-    func getImageView(completion: @escaping ((UIImage?)-> Void)) {
-        let imageView = UIImageView()
-        ImageLoader.get("https://picsum.photos/200", nocache: true) {
-            imageView.image = $0.image
-            completion(imageView.image)
+            newViewModel.parentViewModelDelegate = self
+            cellViewModels.append(newViewModel)
         }
     }
     
     func getCellViewModel(at indexPath: IndexPath) -> ImageCellViewModel? {
+        guard cellViewModels.indices.contains(indexPath.row) else { return nil }
         return cellViewModels[indexPath.row]
+    }
+    
+    func numberOfItemsInSection(section: Int) -> Int {
+        return cellViewModels.count
+    }
+}
+
+extension ImagesCollectionViewModel: ImagesCellParentViewModelDelegate {
+    func didLongPress(imageCellViewModel: ImageCellViewModel) {
+        guard let index = cellViewModels.firstIndex(where: {$0 == imageCellViewModel}) else { return }
+        print("index: \(index)")
+        cellViewModels.remove(at: index)
+        delegate?.didUpdateData()
     }
 }

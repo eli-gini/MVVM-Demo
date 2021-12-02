@@ -7,6 +7,11 @@
 
 import UIKit
 
+
+protocol NumberListViewControllerDelegate: AnyObject {
+    func didSelectNumber(number: Int)
+}
+
 class NumbersListViewController: UIViewController {
 
     @IBOutlet private weak var numbersTableView: UITableView!

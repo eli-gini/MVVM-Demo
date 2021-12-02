@@ -19,34 +19,39 @@ class ImagesCollectionViewController: UIViewController {
     
     private func setUpView() {
         imagesCollectionView.dataSource = self
+        imagesCollectionView.delegate = self
         imagesCollectionView.register(UINib(nibName: "ImageCell", bundle: nil), forCellWithReuseIdentifier: "imageCell")
-        
-        viewModel?.reloadTableViewClosure = { [weak self] in
-            DispatchQueue.main.async {
-                self?.imagesCollectionView.reloadData()
-            }
-        }
+        viewModel?.delegate = self
     }
 }
 
 extension ImagesCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel?.numberOfCells ?? 0
+        return viewModel?.numberOfItemsInSection(section: section) ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = imagesCollectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as? ImageCell,
            let cellVM = viewModel?.getCellViewModel(at: indexPath) {
-            cell.delegate = self
-            cell.setUpViewModel(viewModel: cellVM)
+            cell.configure(viewModel: cellVM)
             return cell
         } else { return UICollectionViewCell() }
     }
 }
 
-extension ImagesCollectionViewController: ImageCellDelegate {
-    func didLoadImage(in cell: ImageCell) {
-        cell.cellImageView.image = cell.viewModel?.cellImage
+extension ImagesCollectionViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //viewModel.didSelectItemAt
+        
+//        viewModel?.cellViewModels.remove(at: indexPath.row)
+    }
+}
+
+extension ImagesCollectionViewController: ImagesCollectionViewModelDelegate {
+    func didUpdateData() {
+        DispatchQueue.main.async {
+            self.imagesCollectionView.reloadData()
+        }
     }
 }
 

@@ -42,7 +42,6 @@ class MainCoordinator: Coordinator {
     private func goToImagesCollectionView(selectedNumber: Int) {
         let viewController = ImagesCollectionViewController()
         let viewModel = ImagesCollectionViewModel(selectedNumber: selectedNumber)
-        viewModel.initChildViewModel()
         viewController.viewModel = viewModel
         navigationController.pushViewController(viewController, animated: true)
     }

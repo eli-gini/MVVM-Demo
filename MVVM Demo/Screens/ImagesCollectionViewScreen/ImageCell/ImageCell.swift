@@ -8,24 +8,43 @@
 import UIKit
 
 class ImageCell: UICollectionViewCell {
-
-    @IBOutlet weak var cellImageView: UIImageView!
-    var viewModel: ImageCellViewModel?
     
-    weak var delegate: ImageCellDelegate?
+    @IBOutlet private weak var cellImageView: UIImageView!
+    private var viewModel: ImageCellViewModel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        setUpLongPressGesture()
     }
     
-    func setUpViewModel(viewModel: ImageCellViewModel) {
+    func configure(viewModel: ImageCellViewModel) {
         self.viewModel = viewModel
-        delegate?.didLoadImage(in: self)
+        self.viewModel?.delegate = self
+        self.viewModel?.load()
     }
+    
+    private func setUpLongPressGesture() {
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(longPress))
+        self.addGestureRecognizer(gesture)
+    }
+    
+    @objc private func longPress(sender: UILongPressGestureRecognizer) {
+        print(sender.state.rawValue)
+        if sender.state == .began {
+            viewModel?.userDidLongPress()
+        }
+    }
+}
+
+extension ImageCell: ImageCellViewModelDelegate {
+    func didLoadImage(_ image: UIImage) {
+        cellImageView.image = image
+    }
+    
+    func didFailWithError() {
+        self.contentView.backgroundColor = .systemRed
+    }
+    
     
 }
 
-protocol ImageCellDelegate: AnyObject {
-    func didLoadImage(in cell: ImageCell)
-}
