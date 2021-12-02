@@ -17,7 +17,7 @@
 		AD17DDD727538C6200806A8E /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17DDD527538C6200806A8E /* ImageCell.swift */; };
 		AD17DDD827538C6200806A8E /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD17DDD627538C6200806A8E /* ImageCell.xib */; };
 		AD17DDFA2753D64000806A8E /* ImageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17DDF92753D63F00806A8E /* ImageCellViewModel.swift */; };
-		AD17DDFC2753DE9000806A8E /* NumberCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17DDFB2753DE9000806A8E /* NumberCellViewModel.swift */; };
+		AD17DDFC2753DE9000806A8E /* GenericCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17DDFB2753DE9000806A8E /* GenericCellViewModel.swift */; };
 		AD78F115274D318900012EC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F114274D318900012EC4 /* AppDelegate.swift */; };
 		AD78F117274D318900012EC4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F116274D318900012EC4 /* SceneDelegate.swift */; };
 		AD78F11E274D318C00012EC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD78F11D274D318C00012EC4 /* Assets.xcassets */; };
@@ -29,7 +29,7 @@
 		AD78F142274D4A7B00012EC4 /* NumbersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F140274D4A7B00012EC4 /* NumbersListViewController.swift */; };
 		AD78F143274D4A7B00012EC4 /* NumbersListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD78F141274D4A7B00012EC4 /* NumbersListViewController.xib */; };
 		AD78F145274D4B6F00012EC4 /* NumbersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F144274D4B6F00012EC4 /* NumbersListViewModel.swift */; };
-		AD78F14E274E312C00012EC4 /* NumberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F14C274E312C00012EC4 /* NumberTableViewCell.swift */; };
+		AD78F14E274E312C00012EC4 /* GenericCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F14C274E312C00012EC4 /* GenericCell.swift */; };
 		AD78F14F274E312C00012EC4 /* NumberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD78F14D274E312C00012EC4 /* NumberTableViewCell.xib */; };
 		AD78F152274E3C8600012EC4 /* TextFieldError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F151274E3C8600012EC4 /* TextFieldError.swift */; };
 		AD8628CD2758A43000010D43 /* ImageDownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8628CC2758A42F00010D43 /* ImageDownloadService.swift */; };
@@ -48,7 +48,7 @@
 		AD17DDD527538C6200806A8E /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		AD17DDD627538C6200806A8E /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
 		AD17DDF92753D63F00806A8E /* ImageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCellViewModel.swift; sourceTree = "<group>"; };
-		AD17DDFB2753DE9000806A8E /* NumberCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberCellViewModel.swift; sourceTree = "<group>"; };
+		AD17DDFB2753DE9000806A8E /* GenericCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericCellViewModel.swift; sourceTree = "<group>"; };
 		AD78F111274D318900012EC4 /* MVVM Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MVVM Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD78F114274D318900012EC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD78F116274D318900012EC4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 		AD78F140274D4A7B00012EC4 /* NumbersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersListViewController.swift; sourceTree = "<group>"; };
 		AD78F141274D4A7B00012EC4 /* NumbersListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumbersListViewController.xib; sourceTree = "<group>"; };
 		AD78F144274D4B6F00012EC4 /* NumbersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersListViewModel.swift; sourceTree = "<group>"; };
-		AD78F14C274E312C00012EC4 /* NumberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTableViewCell.swift; sourceTree = "<group>"; };
+		AD78F14C274E312C00012EC4 /* GenericCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericCell.swift; sourceTree = "<group>"; };
 		AD78F14D274E312C00012EC4 /* NumberTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberTableViewCell.xib; sourceTree = "<group>"; };
 		AD78F151274E3C8600012EC4 /* TextFieldError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldError.swift; sourceTree = "<group>"; };
 		AD8628CC2758A42F00010D43 /* ImageDownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadService.swift; sourceTree = "<group>"; };
@@ -195,8 +195,8 @@
 		AD78F156274E815700012EC4 /* NumberCell */ = {
 			isa = PBXGroup;
 			children = (
-				AD17DDFB2753DE9000806A8E /* NumberCellViewModel.swift */,
-				AD78F14C274E312C00012EC4 /* NumberTableViewCell.swift */,
+				AD17DDFB2753DE9000806A8E /* GenericCellViewModel.swift */,
+				AD78F14C274E312C00012EC4 /* GenericCell.swift */,
 				AD78F14D274E312C00012EC4 /* NumberTableViewCell.xib */,
 			);
 			path = NumberCell;
@@ -354,14 +354,14 @@
 				AD78F145274D4B6F00012EC4 /* NumbersListViewModel.swift in Sources */,
 				AD17DDFA2753D64000806A8E /* ImageCellViewModel.swift in Sources */,
 				AD78F142274D4A7B00012EC4 /* NumbersListViewController.swift in Sources */,
-				AD17DDFC2753DE9000806A8E /* NumberCellViewModel.swift in Sources */,
+				AD17DDFC2753DE9000806A8E /* GenericCellViewModel.swift in Sources */,
 				AD78F13F274D429000012EC4 /* MainCoordinator.swift in Sources */,
 				AD8628CD2758A43000010D43 /* ImageDownloadService.swift in Sources */,
 				AD78F115274D318900012EC4 /* AppDelegate.swift in Sources */,
 				AD78F13D274D426A00012EC4 /* CoordinatorProtocol.swift in Sources */,
 				AD17DDD727538C6200806A8E /* ImageCell.swift in Sources */,
 				AD17DDC727536DB800806A8E /* UILabelExtension.swift in Sources */,
-				AD78F14E274E312C00012EC4 /* NumberTableViewCell.swift in Sources */,
+				AD78F14E274E312C00012EC4 /* GenericCell.swift in Sources */,
 				AD17DDC92753847400806A8E /* CGFloatExtension.swift in Sources */,
 				AD78F117274D318900012EC4 /* SceneDelegate.swift in Sources */,
 				AD78F13B274D41EE00012EC4 /* MainViewModel.swift in Sources */,

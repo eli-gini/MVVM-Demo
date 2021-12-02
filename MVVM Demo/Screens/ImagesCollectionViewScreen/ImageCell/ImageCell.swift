@@ -19,8 +19,10 @@ class ImageCell: UICollectionViewCell {
     
     func configure(viewModel: ImageCellViewModel) {
         self.viewModel = viewModel
-        self.viewModel?.delegate = self
-        self.viewModel?.load()
+        viewModel.delegate = self
+        viewModel.load()
+//        self.viewModel?.delegate = self
+//        self.viewModel?.load()
     }
     
     private func setUpLongPressGesture() {

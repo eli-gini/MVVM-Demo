@@ -8,11 +8,17 @@
 import Foundation
 import UIKit
 
+protocol NumberListViewModelDelegate: AnyObject {
+    func willSwitchToErrorMode()
+}
+
 class NumbersListViewModel {
     
     var willDismissController: (()-> Void)?
-    var validatedNumber: Int?
-    private var errorMode: Bool = false
+    private var validatedNumber: Int?
+    var errorMode: Bool = false
+    var cellViewModels: [GenericCellViewModel] = []
+    weak var delegate: NumberListViewModelDelegate?
     
     func userDidEnterText(text: String?) {
         if let number = validateNumericText(text: text) {
@@ -24,34 +30,31 @@ class NumbersListViewModel {
     
     func userDidTapGoButton(viewController: UIViewController) {
         if validatedNumber == nil {
-            errorModeSwitch(in: viewController)
+            delegate?.willSwitchToErrorMode()
+        } else {
+            makeCellViewModels()
         }
     }
     
     private func validateNumericText(text: String?)-> Int? {
-        guard let text = text, let number = Int(text), number >= 0 else {
-            return nil
-        }
+        guard let text = text, let number = Int(text), number >= 0 else { return nil }
         return number
     }
     
-    private func showAlert(viewController: UIViewController, message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .cancel, handler: { _ in
-            self.errorMode = false
-            self.manageBackground(in: viewController)
-        })
-        alert.addAction(action)
-        viewController.present(alert, animated: true, completion: nil)
+    private func makeCellViewModels() {
+        for _ in 0...(validatedNumber! - 1) {
+            let newViewModel = GenericCellViewModel()
+//            newViewModel.parentViewModelDelegate = self
+            cellViewModels.append(newViewModel)
+        }
     }
     
-    private func manageBackground(in viewController: UIViewController) {
-        viewController.view.backgroundColor = errorMode ? .systemRed : .systemBackground
+    func getCellViewModel(at indexPath: IndexPath) -> GenericCellViewModel? {
+        guard cellViewModels.indices.contains(indexPath.row) else { return nil }
+        return cellViewModels[indexPath.row]
     }
     
-    private func errorModeSwitch(in viewController: UIViewController) {
-        errorMode = true
-        showAlert(viewController: viewController, message: TextFieldError.invalidCharacter.description)
-        manageBackground(in: viewController)
+    func numberOfItemsInSection(section: Int) -> Int {
+        return cellViewModels.count
     }
 }

@@ -11,7 +11,6 @@ class ImagesCollectionViewModel {
     
     private var selectedNumber: Int
     var updateCellViewModels: (()->())?
-    
     var cellViewModels: [ImageCellViewModel] = []
     
     init(selectedNumber: Int) {
@@ -20,7 +19,7 @@ class ImagesCollectionViewModel {
     }
     
     private func makeCellViewModels() {
-        for _ in 0...selectedNumber {
+        for _ in 0...selectedNumber - 1 {
             let newViewModel = ImageCellViewModel()
             newViewModel.parentViewModelDelegate = self
             cellViewModels.append(newViewModel)
