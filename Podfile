@@ -7,7 +7,6 @@ target 'MVVM Demo' do
 
   # Pods for MVVM Demo
 
-   pod 'IBAnimatable'
 pod 'EzImageLoader'
 pod 'Reusable'
 
