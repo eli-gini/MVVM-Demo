@@ -28,11 +28,19 @@ class NumbersListViewController: UIViewController {
         setUpViewController()
     }
     
+    init (viewModel: NumbersListViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private func setUpViewController() {
         viewModel?.delegate = self
         numbersTextField.delegate = self
         numbersTableView.dataSource = self
-//        numbersTableView.delegate = self
         numbersTableView.register(UINib(nibName: "NumberTableViewCell", bundle: nil), forCellReuseIdentifier: "numberCell")
     }
     
@@ -92,15 +100,6 @@ extension NumbersListViewController: UITableViewDataSource {
         return cell
     }
 }
-
-//MARK: - UITableViewDelegate
-
-//extension NumbersListViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        delegate?.didSelectNumber(number: indexPath.row)
-//        viewModel?.willDismissController?()
-//    }
-//}
 
 //MARK: - UITextFieldDelegate
 

@@ -13,6 +13,11 @@ class MainViewController: UIViewController {
     @IBOutlet private weak var buttonLabel: UILabel!
     @IBOutlet private weak var dataPassedButton: UIButton!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUpView()
+    }
+    
     init (viewModel: MainViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -20,11 +25,6 @@ class MainViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setUpView()
     }
     
     private func setUpView() {
@@ -61,7 +61,7 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: MainViewModelDelegate {
-    func titleWillChange(to title: String) {
+    func viewWillUpdate(title: String) {
         buttonLabel.text = title
         
         dataPassedButton.isHidden = false

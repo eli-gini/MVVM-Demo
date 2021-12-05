@@ -21,7 +21,7 @@ class MainCoordinator: Coordinator {
     }
     
     func start() {
-        let viewModel = MainViewModel()
+        let viewModel = MainViewModel(mainCoordinator: self)
         let viewController = MainViewController(viewModel: viewModel)
         viewModel.didPressStart = {
             self.goToNumbersList()
@@ -33,11 +33,8 @@ class MainCoordinator: Coordinator {
     }
     
     private func goToNumbersList() {
-        let viewController = NumbersListViewController()
         let viewModel = NumbersListViewModel()
-        //init viewController with viewModel and delegate
-        viewController.viewModel = viewModel
-//        viewController.delegate = delegate
+        let viewController = NumbersListViewController(viewModel: viewModel)
         viewModel.userDidSelectCellWithNumber = { selectedNumber in
             self.mainCoordinatorDelegate?.didPerformAction(with: selectedNumber)
             self.navigationController.popToRootViewController(animated: true)

@@ -8,15 +8,22 @@
 import UIKit
 
 protocol MainViewModelDelegate: AnyObject {
-    func titleWillChange(to title: String)
+    func viewWillUpdate(title: String)
 }
 
 class MainViewModel {
     
-    var delegate: MainViewModelDelegate?
+    weak var delegate: MainViewModelDelegate?
     var didPressStart: (()->Void)?
     var didPressDataAdded: ((Int)->Void)?
     private var numberReceived: Int?
+    // keep reference to mainCoordinator?
+    private var mainCoordinator: MainCoordinator
+    
+    init(mainCoordinator: MainCoordinator) {
+        self.mainCoordinator = mainCoordinator
+        mainCoordinator.mainCoordinatorDelegate = self
+    }
     
     func presentNumbersListVC() {
         didPressStart?()
@@ -38,14 +45,7 @@ extension MainViewModel: MainCoordinatorDelegate {
     func didPerformAction<T>(with data: T) {
         if let number = data as? Int {
             numberReceived = number
-            print(number)
+            delegate?.viewWillUpdate(title: number.description)
         }
     }
 }
-//extension MainViewModel: NumberListViewControllerDelegate {
-//    func didSelectNumber(number: Int) {
-//        numberToPass = number
-//        let title = getStringNumber(number)
-//        delegate?.titleWillChange(to: title)
-//    }
-//}
