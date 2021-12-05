@@ -8,11 +8,13 @@
 import Foundation
 
 protocol ListViewModel: AnyObject {
-    var cellViewModels: [GenericCellViewModel] { get set }
+    var userDidSelectCell: ((Any)->Void)? {get set}
+    var cellViewModels: [GenericCellViewModel] {get set}
     var errorMode: Bool { get set }
-    var delegate: ListViewModelDelegate? { get set }
+    var delegate: ListViewModelDelegate? {get set}
     func userDidEnterText(_ text: String?)
     func userDidTapGoButton()
+    func makeCellViewModels()
     func numberOfItemsInSection(section: Int) -> Int
     func getCellViewModel(at indexPath: IndexPath) -> GenericCellViewModel?
 }
@@ -27,6 +29,7 @@ extension ListViewModel {
         return cellViewModels[indexPath.row]
     }
 }
+
 protocol ListViewModelDelegate: AnyObject {
     func willSwitchToErrorMode()
 }

@@ -35,7 +35,7 @@ class MainCoordinator: Coordinator {
     private func goToNumbersList() {
         let viewModel = NumbersListViewModel()
         let viewController = ListViewController(viewModel: viewModel)
-        viewModel.userDidSelectCellWithNumber = { [weak self] (selectedNumber) in
+        viewModel.userDidSelectCell = { [weak self] (selectedNumber) in
             self?.mainCoordinatorDelegate?.didPerformAction(with: selectedNumber)
             self?.navigationController.popToRootViewController(animated: true)
         }

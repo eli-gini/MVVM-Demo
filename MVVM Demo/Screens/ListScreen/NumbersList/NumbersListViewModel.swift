@@ -10,11 +10,11 @@ import UIKit
 
 class NumbersListViewModel: ListViewModel {
     
-    var userDidSelectCellWithNumber: ((Int)-> Void)?
-    private var validatedNumber: Int?
-    var errorMode: Bool = false
+    var userDidSelectCell: ((Any)-> Void)?
     var cellViewModels: [GenericCellViewModel] = []
+    var errorMode: Bool = false
     var delegate: ListViewModelDelegate?
+    private var validatedNumber: Int?
     
     func userDidEnterText(_ text: String?) {
         if let number = validateNumericText(text: text) {
@@ -37,7 +37,7 @@ class NumbersListViewModel: ListViewModel {
         return number
     }
     
-    private func makeCellViewModels() {
+    func makeCellViewModels() {
         if let numberOfCells = validatedNumber {
             for _ in 0...(numberOfCells - 1) {
                 let newViewModel = GenericCellViewModel()
@@ -46,16 +46,11 @@ class NumbersListViewModel: ListViewModel {
             }
         }
     }
-    
-    func getCellViewModel(at indexPath: IndexPath) -> GenericCellViewModel? {
-        guard cellViewModels.indices.contains(indexPath.row) else { return nil }
-        return cellViewModels[indexPath.row]
-    }
 }
 
 extension NumbersListViewModel: GenericCellsParentViewModelDelegate {
     func didTapCell(viewModel: GenericCellViewModel) {
         guard let index = cellViewModels.firstIndex(where: { $0 == viewModel }) else { return }
-        userDidSelectCellWithNumber?(index)
+        userDidSelectCell?(index)
     }
 }

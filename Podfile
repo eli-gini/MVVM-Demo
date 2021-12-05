@@ -9,5 +9,6 @@ target 'MVVM Demo' do
 
 pod 'EzImageLoader'
 pod 'Reusable'
+pod 'Alamofire', '~> 5.4'
 
 end

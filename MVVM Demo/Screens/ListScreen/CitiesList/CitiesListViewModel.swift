@@ -9,6 +9,7 @@ import Foundation
 
 class CitiesListViewModel: ListViewModel {
     
+    var userDidSelectCell: ((Any) -> Void)?
     var cellViewModels: [GenericCellViewModel] = []
     var errorMode: Bool = false
     var delegate: ListViewModelDelegate?
@@ -18,6 +19,10 @@ class CitiesListViewModel: ListViewModel {
     }
     
     func userDidTapGoButton() {
+        
+    }
+    
+    func makeCellViewModels() {
         
     }
 }
