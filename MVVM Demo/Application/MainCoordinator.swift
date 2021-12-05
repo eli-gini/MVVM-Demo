@@ -23,8 +23,8 @@ class MainCoordinator: Coordinator {
     func start() {
         let viewModel = MainViewModel(mainCoordinator: self)
         let viewController = MainViewController(viewModel: viewModel)
-        viewModel.didPressStart = {
-            self.goToNumbersList()
+        viewModel.didPressStart = { [weak self] in
+            self?.goToNumbersList()
         }
         viewModel.didPressDataAdded = { [weak self] (number) in
             self?.goToImagesCollectionView(selectedNumber: number)
@@ -34,18 +34,26 @@ class MainCoordinator: Coordinator {
     
     private func goToNumbersList() {
         let viewModel = NumbersListViewModel()
-        let viewController = NumbersListViewController(viewModel: viewModel)
-        viewModel.userDidSelectCellWithNumber = { selectedNumber in
-            self.mainCoordinatorDelegate?.didPerformAction(with: selectedNumber)
-            self.navigationController.popToRootViewController(animated: true)
+        let viewController = ListViewController(viewModel: viewModel)
+        viewModel.userDidSelectCellWithNumber = { [weak self] (selectedNumber) in
+            self?.mainCoordinatorDelegate?.didPerformAction(with: selectedNumber)
+            self?.navigationController.popToRootViewController(animated: true)
         }
         navigationController.pushViewController(viewController, animated: true)
     }
     
     private func goToImagesCollectionView(selectedNumber: Int) {
-        let viewController = ImagesCollectionViewController()
         let viewModel = ImagesCollectionViewModel(selectedNumber: selectedNumber)
-        viewController.viewModel = viewModel
+        let viewController = ImagesCollectionViewController(viewModel: viewModel)
+        viewModel.didTapImageCell = { [weak self] in
+            self?.goToCitiesList()
+        }
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    private func goToCitiesList() {
+        let viewModel = CitiesListViewModel()
+        let viewController = ListViewController(viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
     }
 }

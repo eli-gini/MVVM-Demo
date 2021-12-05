@@ -8,18 +8,18 @@
 import UIKit
 import Reusable
 
-protocol NumberListViewControllerDelegate: AnyObject {
+protocol ListViewControllerDelegate: AnyObject {
     func didSelectNumber(number: Int)
 }
 
-class NumbersListViewController: UIViewController {
+class ListViewController: UIViewController {
     
     @IBOutlet private weak var numbersTableView: UITableView!
     @IBOutlet private weak var numbersTextField: UITextField!
     private var numberOfRows = 0
     
-    var viewModel: NumbersListViewModel?
-    weak var delegate: NumberListViewControllerDelegate?
+    var viewModel: ListViewModel
+    weak var delegate: ListViewControllerDelegate?
     
     //MARK: - VIewController Set Up Methods
     
@@ -28,7 +28,7 @@ class NumbersListViewController: UIViewController {
         setUpViewController()
     }
     
-    init (viewModel: NumbersListViewModel) {
+    init (viewModel: ListViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -38,14 +38,14 @@ class NumbersListViewController: UIViewController {
     }
     
     private func setUpViewController() {
-        viewModel?.delegate = self
+        viewModel.delegate = self
         numbersTextField.delegate = self
         numbersTableView.dataSource = self
         numbersTableView.register(cellType: GenericCell.self)
     }
     
     @IBAction private func goButtonTapped(_ sender: UIButton) {
-        viewModel?.userDidTapGoButton()
+        viewModel.userDidTapGoButton()
         numbersTableView.reloadData()
     }
     
@@ -68,9 +68,7 @@ class NumbersListViewController: UIViewController {
     //MARK: - Error Mode Methods
     
     private func manageBackgroundColor() {
-        if let viewModel = viewModel {
             view.backgroundColor = viewModel.errorMode ? .systemRed : .systemBackground
-        }
     }
     
     private func errorModeSwitch() {
@@ -79,23 +77,21 @@ class NumbersListViewController: UIViewController {
     }
     
     private func toggleErrorMode() {
-        if let viewModel = viewModel {
             viewModel.errorMode = !viewModel.errorMode
             manageBackgroundColor()
-        }
     }
 }
 
 //MARK: - UITableViewDataSource
 
-extension NumbersListViewController: UITableViewDataSource {
+extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.numberOfItemsInSection(section: section) ?? 0
+        return viewModel.numberOfItemsInSection(section: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: GenericCell = numbersTableView.dequeueReusableCell(for: indexPath)
-        guard let cellVM = self.viewModel?.getCellViewModel(at: indexPath) else { return UITableViewCell() }
+        guard let cellVM = self.viewModel.getCellViewModel(at: indexPath) else { return UITableViewCell() }
         cell.configure(viewModel: cellVM, indexPath: indexPath)
         return cell
     }
@@ -103,15 +99,15 @@ extension NumbersListViewController: UITableViewDataSource {
 
 //MARK: - UITextFieldDelegate
 
-extension NumbersListViewController: UITextFieldDelegate {
+extension ListViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        viewModel?.userDidEnterText(text: numbersTextField.text)
+        viewModel.userDidEnterText(numbersTextField.text)
     }
 }
 
-//MARK: NumberListViewModelDelegate
+//MARK: NumbersListViewModelDelegate
 
-extension NumbersListViewController: NumbersListViewModelDelegate {
+extension ListViewController: ListViewModelDelegate {
     func willSwitchToErrorMode() {
         errorModeSwitch()
     }

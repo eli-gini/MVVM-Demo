@@ -18,6 +18,8 @@
 		AD17DDD827538C6200806A8E /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD17DDD627538C6200806A8E /* ImageCell.xib */; };
 		AD17DDFA2753D64000806A8E /* ImageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17DDF92753D63F00806A8E /* ImageCellViewModel.swift */; };
 		AD17DDFC2753DE9000806A8E /* GenericCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17DDFB2753DE9000806A8E /* GenericCellViewModel.swift */; };
+		AD27C3EE275CE38F0038D57B /* ListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD27C3ED275CE38F0038D57B /* ListViewModelProtocol.swift */; };
+		AD27C3F0275CF6520038D57B /* CitiesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD27C3EF275CF6520038D57B /* CitiesListViewModel.swift */; };
 		AD78F115274D318900012EC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F114274D318900012EC4 /* AppDelegate.swift */; };
 		AD78F117274D318900012EC4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F116274D318900012EC4 /* SceneDelegate.swift */; };
 		AD78F11E274D318C00012EC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD78F11D274D318C00012EC4 /* Assets.xcassets */; };
@@ -26,8 +28,8 @@
 		AD78F13B274D41EE00012EC4 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F13A274D41EE00012EC4 /* MainViewModel.swift */; };
 		AD78F13D274D426A00012EC4 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F13C274D426A00012EC4 /* CoordinatorProtocol.swift */; };
 		AD78F13F274D429000012EC4 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F13E274D429000012EC4 /* MainCoordinator.swift */; };
-		AD78F142274D4A7B00012EC4 /* NumbersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F140274D4A7B00012EC4 /* NumbersListViewController.swift */; };
-		AD78F143274D4A7B00012EC4 /* NumbersListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD78F141274D4A7B00012EC4 /* NumbersListViewController.xib */; };
+		AD78F142274D4A7B00012EC4 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F140274D4A7B00012EC4 /* ListViewController.swift */; };
+		AD78F143274D4A7B00012EC4 /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD78F141274D4A7B00012EC4 /* ListViewController.xib */; };
 		AD78F145274D4B6F00012EC4 /* NumbersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F144274D4B6F00012EC4 /* NumbersListViewModel.swift */; };
 		AD78F14E274E312C00012EC4 /* GenericCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F14C274E312C00012EC4 /* GenericCell.swift */; };
 		AD78F14F274E312C00012EC4 /* GenericCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD78F14D274E312C00012EC4 /* GenericCell.xib */; };
@@ -49,6 +51,8 @@
 		AD17DDD627538C6200806A8E /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
 		AD17DDF92753D63F00806A8E /* ImageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCellViewModel.swift; sourceTree = "<group>"; };
 		AD17DDFB2753DE9000806A8E /* GenericCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericCellViewModel.swift; sourceTree = "<group>"; };
+		AD27C3ED275CE38F0038D57B /* ListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModelProtocol.swift; sourceTree = "<group>"; };
+		AD27C3EF275CF6520038D57B /* CitiesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesListViewModel.swift; sourceTree = "<group>"; };
 		AD78F111274D318900012EC4 /* MVVM Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MVVM Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD78F114274D318900012EC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD78F116274D318900012EC4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,8 +63,8 @@
 		AD78F13A274D41EE00012EC4 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		AD78F13C274D426A00012EC4 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 		AD78F13E274D429000012EC4 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
-		AD78F140274D4A7B00012EC4 /* NumbersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersListViewController.swift; sourceTree = "<group>"; };
-		AD78F141274D4A7B00012EC4 /* NumbersListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumbersListViewController.xib; sourceTree = "<group>"; };
+		AD78F140274D4A7B00012EC4 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		AD78F141274D4A7B00012EC4 /* ListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
 		AD78F144274D4B6F00012EC4 /* NumbersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersListViewModel.swift; sourceTree = "<group>"; };
 		AD78F14C274E312C00012EC4 /* GenericCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericCell.swift; sourceTree = "<group>"; };
 		AD78F14D274E312C00012EC4 /* GenericCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenericCell.xib; sourceTree = "<group>"; };
@@ -173,7 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				AD78F154274E80F800012EC4 /* MainScreen */,
-				AD78F155274E812300012EC4 /* NumbersListScreen */,
+				AD78F155274E812300012EC4 /* ListScreen */,
 				AD17DDCD2753899500806A8E /* ImagesCollectionViewScreen */,
 			);
 			path = Screens;
@@ -189,25 +193,27 @@
 			path = MainScreen;
 			sourceTree = "<group>";
 		};
-		AD78F155274E812300012EC4 /* NumbersListScreen */ = {
+		AD78F155274E812300012EC4 /* ListScreen */ = {
 			isa = PBXGroup;
 			children = (
-				AD78F144274D4B6F00012EC4 /* NumbersListViewModel.swift */,
-				AD78F140274D4A7B00012EC4 /* NumbersListViewController.swift */,
-				AD78F141274D4A7B00012EC4 /* NumbersListViewController.xib */,
-				AD78F156274E815700012EC4 /* NumberCell */,
+				AD27C3ED275CE38F0038D57B /* ListViewModelProtocol.swift */,
+				AD78F140274D4A7B00012EC4 /* ListViewController.swift */,
+				AD78F141274D4A7B00012EC4 /* ListViewController.xib */,
+				AD78F156274E815700012EC4 /* GenericCell */,
+				ADEA0846275CE1F300966A00 /* NumbersList */,
+				ADEA0847275CE26000966A00 /* CitiesList */,
 			);
-			path = NumbersListScreen;
+			path = ListScreen;
 			sourceTree = "<group>";
 		};
-		AD78F156274E815700012EC4 /* NumberCell */ = {
+		AD78F156274E815700012EC4 /* GenericCell */ = {
 			isa = PBXGroup;
 			children = (
 				AD17DDFB2753DE9000806A8E /* GenericCellViewModel.swift */,
 				AD78F14C274E312C00012EC4 /* GenericCell.swift */,
 				AD78F14D274E312C00012EC4 /* GenericCell.xib */,
 			);
-			path = NumberCell;
+			path = GenericCell;
 			sourceTree = "<group>";
 		};
 		AD78F157274E81A000012EC4 /* Services */ = {
@@ -217,6 +223,22 @@
 				AD8628CC2758A42F00010D43 /* ImageDownloadService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		ADEA0846275CE1F300966A00 /* NumbersList */ = {
+			isa = PBXGroup;
+			children = (
+				AD78F144274D4B6F00012EC4 /* NumbersListViewModel.swift */,
+			);
+			path = NumbersList;
+			sourceTree = "<group>";
+		};
+		ADEA0847275CE26000966A00 /* CitiesList */ = {
+			isa = PBXGroup;
+			children = (
+				AD27C3EF275CF6520038D57B /* CitiesListViewModel.swift */,
+			);
+			path = CitiesList;
 			sourceTree = "<group>";
 		};
 		AEDE009310065B0D5A7D480F /* Pods */ = {
@@ -289,7 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD78F14F274E312C00012EC4 /* GenericCell.xib in Resources */,
-				AD78F143274D4A7B00012EC4 /* NumbersListViewController.xib in Resources */,
+				AD78F143274D4A7B00012EC4 /* ListViewController.xib in Resources */,
 				AD78F11E274D318C00012EC4 /* Assets.xcassets in Resources */,
 				AD17DDD827538C6200806A8E /* ImageCell.xib in Resources */,
 				AD17DDD3275389FA00806A8E /* ImagesCollectionViewController.xib in Resources */,
@@ -353,15 +375,17 @@
 				AD17DDCF275389BF00806A8E /* ImagesCollectionViewModel.swift in Sources */,
 				AD78F145274D4B6F00012EC4 /* NumbersListViewModel.swift in Sources */,
 				AD17DDFA2753D64000806A8E /* ImageCellViewModel.swift in Sources */,
-				AD78F142274D4A7B00012EC4 /* NumbersListViewController.swift in Sources */,
+				AD78F142274D4A7B00012EC4 /* ListViewController.swift in Sources */,
 				AD17DDFC2753DE9000806A8E /* GenericCellViewModel.swift in Sources */,
 				AD78F13F274D429000012EC4 /* MainCoordinator.swift in Sources */,
+				AD27C3EE275CE38F0038D57B /* ListViewModelProtocol.swift in Sources */,
 				AD8628CD2758A43000010D43 /* ImageDownloadService.swift in Sources */,
 				AD78F115274D318900012EC4 /* AppDelegate.swift in Sources */,
 				AD78F13D274D426A00012EC4 /* CoordinatorProtocol.swift in Sources */,
 				AD17DDD727538C6200806A8E /* ImageCell.swift in Sources */,
 				AD17DDC727536DB800806A8E /* UILabelExtension.swift in Sources */,
 				AD78F14E274E312C00012EC4 /* GenericCell.swift in Sources */,
+				AD27C3F0275CF6520038D57B /* CitiesListViewModel.swift in Sources */,
 				AD17DDC92753847400806A8E /* CGFloatExtension.swift in Sources */,
 				AD78F117274D318900012EC4 /* SceneDelegate.swift in Sources */,
 				AD78F13B274D41EE00012EC4 /* MainViewModel.swift in Sources */,

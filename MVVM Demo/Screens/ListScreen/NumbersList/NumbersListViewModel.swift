@@ -8,26 +8,22 @@
 import Foundation
 import UIKit
 
-protocol NumbersListViewModelDelegate: AnyObject {
-    func willSwitchToErrorMode()
-}
-
-class NumbersListViewModel {
+class NumbersListViewModel: ListViewModel {
     
     var userDidSelectCellWithNumber: ((Int)-> Void)?
     private var validatedNumber: Int?
     var errorMode: Bool = false
-    private var cellViewModels: [GenericCellViewModel] = []
-    weak var delegate: NumbersListViewModelDelegate?
+    var cellViewModels: [GenericCellViewModel] = []
+    var delegate: ListViewModelDelegate?
     
-    func userDidEnterText(text: String?) {
+    func userDidEnterText(_ text: String?) {
         if let number = validateNumericText(text: text) {
             validatedNumber = number
         } else {
             validatedNumber = nil
         }
     }
-    
+
     func userDidTapGoButton() {
         if validatedNumber == nil {
             delegate?.willSwitchToErrorMode()
@@ -42,20 +38,18 @@ class NumbersListViewModel {
     }
     
     private func makeCellViewModels() {
-        for _ in 0...(validatedNumber! - 1) {
-            let newViewModel = GenericCellViewModel()
-            newViewModel.parentViewModelDelegate = self
-            cellViewModels.append(newViewModel)
+        if let numberOfCells = validatedNumber {
+            for _ in 0...(numberOfCells - 1) {
+                let newViewModel = GenericCellViewModel()
+                newViewModel.parentViewModelDelegate = self
+                cellViewModels.append(newViewModel)
+            }
         }
     }
     
     func getCellViewModel(at indexPath: IndexPath) -> GenericCellViewModel? {
         guard cellViewModels.indices.contains(indexPath.row) else { return nil }
         return cellViewModels[indexPath.row]
-    }
-    
-    func numberOfItemsInSection(section: Int) -> Int {
-        return cellViewModels.count
     }
 }
 

@@ -13,6 +13,7 @@ protocol ImageCellViewModelDelegate: AnyObject {
 }
 
 protocol ImagesCellParentViewModelDelegate: AnyObject {
+    func didTap(imageCellViewModel: ImageCellViewModel)
     func didLongPress(imageCellViewModel: ImageCellViewModel)
 }
 
@@ -35,6 +36,10 @@ class ImageCellViewModel {
                 }
             }
         }
+    }
+    
+    func userDidTap() {
+        parentViewModelDelegate?.didTap(imageCellViewModel: self)
     }
     
     func userDidLongPress() {

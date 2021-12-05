@@ -15,7 +15,7 @@ class ImageCell: UICollectionViewCell, NibReusable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setUpLongPressGesture()
+        setUpGestures()
     }
     
     func configure(viewModel: ImageCellViewModel) {
@@ -24,9 +24,25 @@ class ImageCell: UICollectionViewCell, NibReusable {
         viewModel.load()
     }
     
+    private func setUpGestures() {
+        setUpTapGesture()
+        setUpLongPressGesture()
+    }
+    
+    //MARK: - Gestures configuration
+    
+    private func setUpTapGesture() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(userDidTap))
+        addGestureRecognizer(gesture)
+    }
+    
+    @objc private func userDidTap() {
+        viewModel?.userDidTap()
+    }
+    
     private func setUpLongPressGesture() {
         let gesture = UILongPressGestureRecognizer(target: self, action: #selector(userDidLongPress))
-        self.addGestureRecognizer(gesture)
+        addGestureRecognizer(gesture)
     }
     
     @objc private func userDidLongPress(sender: UILongPressGestureRecognizer) {

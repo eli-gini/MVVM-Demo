@@ -11,6 +11,7 @@ class ImagesCollectionViewModel {
     
     private var selectedNumber: Int
     var updateCellViewModels: (()->())?
+    var didTapImageCell: (()->Void)?
     var cellViewModels: [ImageCellViewModel] = []
     
     init(selectedNumber: Int) {
@@ -37,6 +38,10 @@ class ImagesCollectionViewModel {
 }
 
 extension ImagesCollectionViewModel: ImagesCellParentViewModelDelegate {
+    func didTap(imageCellViewModel: ImageCellViewModel) {
+        didTapImageCell?()
+    }
+    
     func didLongPress(imageCellViewModel: ImageCellViewModel) {
         cellViewModels.removeAll(where: { $0 == imageCellViewModel })
         updateCellViewModels?()
