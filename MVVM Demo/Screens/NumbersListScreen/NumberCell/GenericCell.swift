@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import Reusable
 
-class GenericCell: UITableViewCell {
+class GenericCell: UITableViewCell, NibReusable {
     
     @IBOutlet weak var numberCellLabel: UILabel!
     var viewModel: GenericCellViewModel?

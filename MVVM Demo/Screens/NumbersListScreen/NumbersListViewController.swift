@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Reusable
 
 protocol NumberListViewControllerDelegate: AnyObject {
     func didSelectNumber(number: Int)
@@ -41,7 +41,7 @@ class NumbersListViewController: UIViewController {
         viewModel?.delegate = self
         numbersTextField.delegate = self
         numbersTableView.dataSource = self
-        numbersTableView.register(UINib(nibName: "NumberTableViewCell", bundle: nil), forCellReuseIdentifier: "numberCell")
+        numbersTableView.register(cellType: GenericCell.self)
     }
     
     @IBAction private func goButtonTapped(_ sender: UIButton) {
@@ -94,8 +94,8 @@ extension NumbersListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = numbersTableView.dequeueReusableCell(withIdentifier: "numberCell", for: indexPath) as? GenericCell,
-              let cellVM = self.viewModel?.getCellViewModel(at: indexPath) else { return UITableViewCell() }
+        let cell: GenericCell = numbersTableView.dequeueReusableCell(for: indexPath)
+        guard let cellVM = self.viewModel?.getCellViewModel(at: indexPath) else { return UITableViewCell() }
         cell.configure(viewModel: cellVM, indexPath: indexPath)
         return cell
     }

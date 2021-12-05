@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import Reusable
 
-class ImageCell: UICollectionViewCell {
+class ImageCell: UICollectionViewCell, NibReusable {
     
     @IBOutlet private weak var cellImageView: UIImageView!
     private var viewModel: ImageCellViewModel?
@@ -43,7 +44,4 @@ extension ImageCell: ImageCellViewModelDelegate {
     func didFailWithError() {
         self.contentView.backgroundColor = .systemRed
     }
-    
-    
 }
-
