@@ -8,23 +8,29 @@
 import UIKit
 
 class GenericCell: UITableViewCell {
-
+    
     @IBOutlet weak var numberCellLabel: UILabel!
     var viewModel: GenericCellViewModel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+        setUpTapGesture()
     }
     
-    func configure(viewModel: GenericCellViewModel, at indexPath: IndexPath) {
+    func configure(viewModel: GenericCellViewModel, indexPath: IndexPath) {
         self.viewModel = viewModel
         viewModel.delegate = self
-        viewModel.loadValidNumber(indexPath.row)
+        viewModel.loadNumbers(indexPath.row)
+        
+    }
+    
+    private func setUpTapGesture() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(userDidTapCell))
+        addGestureRecognizer(gesture)
+    }
+    
+    @objc private func userDidTapCell() {
+        viewModel?.userDidSelectCell()
     }
 }
 

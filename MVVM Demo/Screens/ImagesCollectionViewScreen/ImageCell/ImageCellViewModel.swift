@@ -20,7 +20,7 @@ class ImageCellViewModel {
     
     weak var parentViewModelDelegate: ImagesCellParentViewModelDelegate?
     weak var delegate: ImageCellViewModelDelegate?
-    let uuid = UUID()
+    private let uuid = UUID()
     private var hasLoadedImage = false
     
     func load() {

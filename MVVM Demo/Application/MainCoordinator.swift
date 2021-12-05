@@ -7,33 +7,39 @@
 
 import UIKit
 
+protocol MainCoordinatorDelegate: AnyObject {
+    func didPerformAction<T: Any>(with data: T)
+}
+
 class MainCoordinator: Coordinator {
     
     private var navigationController: UINavigationController
+    weak var mainCoordinatorDelegate: MainCoordinatorDelegate?
     
     init(navigator: UINavigationController) {
         self.navigationController = navigator
     }
     
     func start() {
-        let viewController = MainViewController()
         let viewModel = MainViewModel()
-        viewController.viewModel = viewModel
+        let viewController = MainViewController(viewModel: viewModel)
         viewModel.didPressStart = {
-            self.goToNumbersList(delegate: viewModel)
+            self.goToNumbersList()
         }
-        viewModel.didPressDataAdded = { (number) in
-            self.goToImagesCollectionView(selectedNumber: number)
+        viewModel.didPressDataAdded = { [weak self] (number) in
+            self?.goToImagesCollectionView(selectedNumber: number)
         }
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    private func goToNumbersList(delegate: NumberListViewControllerDelegate) {
+    private func goToNumbersList() {
         let viewController = NumbersListViewController()
         let viewModel = NumbersListViewModel()
+        //init viewController with viewModel and delegate
         viewController.viewModel = viewModel
-        viewController.delegate = delegate
-        viewModel.willDismissController = {
+//        viewController.delegate = delegate
+        viewModel.userDidSelectCellWithNumber = { selectedNumber in
+            self.mainCoordinatorDelegate?.didPerformAction(with: selectedNumber)
             self.navigationController.popToRootViewController(animated: true)
         }
         navigationController.pushViewController(viewController, animated: true)

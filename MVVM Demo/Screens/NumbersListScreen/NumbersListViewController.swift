@@ -32,12 +32,12 @@ class NumbersListViewController: UIViewController {
         viewModel?.delegate = self
         numbersTextField.delegate = self
         numbersTableView.dataSource = self
-        numbersTableView.delegate = self
+//        numbersTableView.delegate = self
         numbersTableView.register(UINib(nibName: "NumberTableViewCell", bundle: nil), forCellReuseIdentifier: "numberCell")
     }
     
     @IBAction private func goButtonTapped(_ sender: UIButton) {
-        viewModel?.userDidTapGoButton(viewController: self)
+        viewModel?.userDidTapGoButton()
         numbersTableView.reloadData()
     }
     
@@ -88,20 +88,19 @@ extension NumbersListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = numbersTableView.dequeueReusableCell(withIdentifier: "numberCell", for: indexPath) as? GenericCell,
               let cellVM = self.viewModel?.getCellViewModel(at: indexPath) else { return UITableViewCell() }
-        cell.configure(viewModel: cellVM, at: indexPath)
-//        cell.numberCellLabel.text = String(indexPath.row)
+        cell.configure(viewModel: cellVM, indexPath: indexPath)
         return cell
     }
 }
 
 //MARK: - UITableViewDelegate
 
-extension NumbersListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.didSelectNumber(number: indexPath.row)
-        viewModel?.willDismissController?()
-    }
-}
+//extension NumbersListViewController: UITableViewDelegate {
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        delegate?.didSelectNumber(number: indexPath.row)
+//        viewModel?.willDismissController?()
+//    }
+//}
 
 //MARK: - UITextFieldDelegate
 
@@ -113,11 +112,9 @@ extension NumbersListViewController: UITextFieldDelegate {
 
 //MARK: NumberListViewModelDelegate
 
-extension NumbersListViewController: NumberListViewModelDelegate {
+extension NumbersListViewController: NumbersListViewModelDelegate {
     func willSwitchToErrorMode() {
         errorModeSwitch()
     }
-    
-
 }
 

@@ -8,17 +8,17 @@
 import Foundation
 import UIKit
 
-protocol NumberListViewModelDelegate: AnyObject {
+protocol NumbersListViewModelDelegate: AnyObject {
     func willSwitchToErrorMode()
 }
 
 class NumbersListViewModel {
     
-    var willDismissController: (()-> Void)?
+    var userDidSelectCellWithNumber: ((Int)-> Void)?
     private var validatedNumber: Int?
     var errorMode: Bool = false
-    var cellViewModels: [GenericCellViewModel] = []
-    weak var delegate: NumberListViewModelDelegate?
+    private var cellViewModels: [GenericCellViewModel] = []
+    weak var delegate: NumbersListViewModelDelegate?
     
     func userDidEnterText(text: String?) {
         if let number = validateNumericText(text: text) {
@@ -28,7 +28,7 @@ class NumbersListViewModel {
         }
     }
     
-    func userDidTapGoButton(viewController: UIViewController) {
+    func userDidTapGoButton() {
         if validatedNumber == nil {
             delegate?.willSwitchToErrorMode()
         } else {
@@ -44,7 +44,7 @@ class NumbersListViewModel {
     private func makeCellViewModels() {
         for _ in 0...(validatedNumber! - 1) {
             let newViewModel = GenericCellViewModel()
-//            newViewModel.parentViewModelDelegate = self
+            newViewModel.parentViewModelDelegate = self
             cellViewModels.append(newViewModel)
         }
     }
@@ -56,5 +56,12 @@ class NumbersListViewModel {
     
     func numberOfItemsInSection(section: Int) -> Int {
         return cellViewModels.count
+    }
+}
+
+extension NumbersListViewModel: GenericCellsParentViewModelDelegate {
+    func didTapCell(viewModel: GenericCellViewModel) {
+        guard let index = cellViewModels.firstIndex(where: { $0 == viewModel }) else { return }
+        userDidSelectCellWithNumber?(index)
     }
 }

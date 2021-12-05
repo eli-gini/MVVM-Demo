@@ -9,9 +9,18 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    var viewModel: MainViewModel?
+    var viewModel: MainViewModel
     @IBOutlet private weak var buttonLabel: UILabel!
     @IBOutlet private weak var dataPassedButton: UIButton!
+    
+    init (viewModel: MainViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +28,7 @@ class MainViewController: UIViewController {
     }
     
     private func setUpView() {
-        viewModel?.delegate = self
+        viewModel.delegate = self
         configureTapGesture()
         configureDataPassedButton()
     }
@@ -43,11 +52,11 @@ class MainViewController: UIViewController {
     }
         
     @IBAction private func startButtonTapped(sender: UIButton) {
-        viewModel?.presentNumbersListVC()
+        viewModel.presentNumbersListVC()
     }
     
     @IBAction private func dataPassedButtonTapped(_ sender: UIButton) {
-        viewModel?.presentImagesCollectionVC()
+        viewModel.presentImagesCollectionVC()
     }
 }
 

@@ -164,9 +164,9 @@
 		AD78F153274E80EF00012EC4 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				AD17DDCD2753899500806A8E /* ImagesCollectionViewScreen */,
-				AD78F155274E812300012EC4 /* NumbersListScreen */,
 				AD78F154274E80F800012EC4 /* MainScreen */,
+				AD78F155274E812300012EC4 /* NumbersListScreen */,
+				AD17DDCD2753899500806A8E /* ImagesCollectionViewScreen */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
