@@ -20,8 +20,9 @@ class ImagesCollectionViewModel {
     }
     
     private func makeCellViewModels() {
+        let imageLoader = ImageDownloadService()
         for _ in 0...selectedNumber - 1 {
-            let newViewModel = ImageCellViewModel()
+            let newViewModel = ImageCellViewModel(imageLoader: imageLoader)
             newViewModel.parentViewModelDelegate = self
             cellViewModels.append(newViewModel)
         }

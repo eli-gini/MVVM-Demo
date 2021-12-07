@@ -21,15 +21,19 @@ class ImageCellViewModel {
     
     weak var parentViewModelDelegate: ImagesCellParentViewModelDelegate?
     weak var delegate: ImageCellViewModelDelegate?
+    private let imageLoader: ImageDownloadService
     private let uuid = UUID()
-    private var hasLoadedImage = false
+    private var isLoadedImage = false
+    
+    init(imageLoader: ImageDownloadService) {
+        self.imageLoader = imageLoader
+    }
     
     func load() {
-        if !hasLoadedImage {
-            let imageLoader = ImageDownloadService()
+        if !isLoadedImage {
             imageLoader.fetchImage { [weak self] image in
                 if let image = image {
-                    self?.hasLoadedImage = true
+                    self?.isLoadedImage = true
                     self?.delegate?.didLoadImage(image)
                 } else {
                     self?.delegate?.didFailWithError()
