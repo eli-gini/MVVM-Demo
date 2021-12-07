@@ -11,10 +11,10 @@ import UIKit
 class NumbersListViewModel: ListViewModel {
     
     var userDidSelectCell: ((Any)-> Void)?
-    var cellViewModels: [GenericCellViewModel] = []
     var delegate: ListViewModelDelegate?
     var isErrorMode: Bool = false
     private var validatedNumber: Int?
+    var cellViewModels: [GenericCellViewModel] = []
     
     func userDidEnterText(_ text: String?) {
         if let number = validateNumericText(text: text) {
@@ -28,9 +28,14 @@ class NumbersListViewModel: ListViewModel {
         if validatedNumber == nil {
             delegate?.willSwitchToErrorMode()
         } else {
+            resetCellViewModels()
             makeCellViewModels()
             handler?()
         }
+    }
+    
+    private func resetCellViewModels() {
+        cellViewModels.removeAll()
     }
     
     private func validateNumericText(text: String?)-> Int? {

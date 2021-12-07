@@ -20,16 +20,14 @@ protocol ListViewModel: AnyObject {
     func prepareData()
 }
 
-//extension ListViewModel {
-//    private(set) var cellViewModels: [GenericCellViewModel] {
-//        get {
-//            return [GenericCellViewModel]()
-//            }
-//        set {
-//            makeCellViewModels()
-//        }
-//    }
-//}
+extension ListViewModel {
+    private(set) var cellViewModels: [GenericCellViewModel] {
+        get {
+            return [GenericCellViewModel]()
+            }
+        set { }
+    }
+}
 
 protocol ListViewModelDelegate: AnyObject {
     func willSwitchToErrorMode()

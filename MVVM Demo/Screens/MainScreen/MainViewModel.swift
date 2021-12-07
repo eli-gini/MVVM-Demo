@@ -30,10 +30,10 @@ class MainViewModel {
     }
     
     func userDidTapDataPassedButton() {
-//        guard let number = numberReceived else {
-//            return
-//        }
-        didPressDataAdded?(5)
+        guard let number = numberReceived else {
+            return
+        }
+        didPressDataAdded?(number)
     }
     
     private func getStringNumber(_ number: Int)-> String {

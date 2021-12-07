@@ -8,10 +8,11 @@
 import Foundation
 
 class CitiesListViewModel: ListViewModel {
+    
     var userDidSelectCell: ((Any) -> Void)?
-    var cellViewModels: [GenericCellViewModel] = []
     var delegate: ListViewModelDelegate?
     var isErrorMode: Bool = false
+    var cellViewModels: [GenericCellViewModel] = []
     
     private let networkManager: NetworkManager
     private var filteredNSArray = NSArray()
