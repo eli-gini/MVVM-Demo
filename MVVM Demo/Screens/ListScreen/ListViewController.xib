@@ -10,8 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListViewController" customModule="MVVM_Demo" customModuleProvider="target">
             <connections>
-                <outlet property="numbersTableView" destination="tS1-3x-ogY" id="nav-uh-Rqx"/>
-                <outlet property="numbersTextField" destination="XJM-xb-UDv" id="O80-V9-WoZ"/>
+                <outlet property="listTableView" destination="tS1-3x-ogY" id="nav-uh-Rqx"/>
+                <outlet property="listTextField" destination="XJM-xb-UDv" id="O80-V9-WoZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -29,7 +29,7 @@
                                 <constraint firstAttribute="height" constant="50" id="KSO-pg-pvh"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            <textInputTraits key="textInputTraits"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fu2-Vk-K7a">
                             <rect key="frame" x="339.5" y="22" width="64.5" height="46"/>

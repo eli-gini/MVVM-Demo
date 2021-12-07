@@ -52,7 +52,8 @@ class MainCoordinator: Coordinator {
     }
     
     private func goToCitiesList() {
-        let viewModel = CitiesListViewModel()
+        let networkManager = NetworkManager()
+        let viewModel = CitiesListViewModel(networkManager: networkManager)
         let viewController = ListViewController(viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
     }

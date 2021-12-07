@@ -14,19 +14,11 @@ protocol ListViewControllerDelegate: AnyObject {
 
 class ListViewController: UIViewController {
     
-    @IBOutlet private weak var numbersTableView: UITableView!
-    @IBOutlet private weak var numbersTextField: UITextField!
-    private var numberOfRows = 0
+    @IBOutlet private weak var listTableView: UITableView!
+    @IBOutlet private weak var listTextField: UITextField!
     
-    var viewModel: ListViewModel
+    private var viewModel: ListViewModel
     weak var delegate: ListViewControllerDelegate?
-    
-    //MARK: - VIewController Set Up Methods
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setUpViewController()
-    }
     
     init (viewModel: ListViewModel) {
         self.viewModel = viewModel
@@ -37,16 +29,28 @@ class ListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - VIewController configuration Methods
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUpViewController()
+        viewModel.prepareData()
+    }
+    
     private func setUpViewController() {
         viewModel.delegate = self
-        numbersTextField.delegate = self
-        numbersTableView.dataSource = self
-        numbersTableView.register(cellType: GenericCell.self)
+        listTextField.delegate = self
+        listTableView.dataSource = self
+        listTableView.register(cellType: GenericCell.self)
     }
     
     @IBAction private func goButtonTapped(_ sender: UIButton) {
-        viewModel.userDidTapGoButton()
-        numbersTableView.reloadData()
+        viewModel.userDidTapGoButton { [weak self] in
+            DispatchQueue.main.async {
+                self?.listTableView.reloadData()
+                
+            }
+        }
     }
     
     //MARK: - UIAlertController Methods
@@ -68,7 +72,7 @@ class ListViewController: UIViewController {
     //MARK: - Error Mode Methods
     
     private func manageBackgroundColor() {
-            view.backgroundColor = viewModel.errorMode ? .systemRed : .systemBackground
+        view.backgroundColor = viewModel.isErrorMode ? .systemRed : .systemBackground
     }
     
     private func errorModeSwitch() {
@@ -77,8 +81,8 @@ class ListViewController: UIViewController {
     }
     
     private func toggleErrorMode() {
-            viewModel.errorMode = !viewModel.errorMode
-            manageBackgroundColor()
+        viewModel.isErrorMode = !viewModel.isErrorMode
+        manageBackgroundColor()
     }
 }
 
@@ -90,9 +94,9 @@ extension ListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: GenericCell = numbersTableView.dequeueReusableCell(for: indexPath)
-        guard let cellVM = self.viewModel.getCellViewModel(at: indexPath) else { return UITableViewCell() }
-        cell.configure(viewModel: cellVM, indexPath: indexPath)
+        let cell: GenericCell = listTableView.dequeueReusableCell(for: indexPath)
+        guard let cellVM = viewModel.getCellViewModel(at: indexPath) else { return UITableViewCell() }
+        cell.configure(viewModel: cellVM, data: cellVM.data as Any)
         return cell
     }
 }
@@ -101,13 +105,23 @@ extension ListViewController: UITableViewDataSource {
 
 extension ListViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        viewModel.userDidEnterText(numbersTextField.text)
+        viewModel.userDidEnterText(listTextField.text)
     }
 }
 
 //MARK: NumbersListViewModelDelegate
 
 extension ListViewController: ListViewModelDelegate {
+    func didFinishSuccessfullRequest() {
+        DispatchQueue.main.async {
+            self.listTableView.reloadData()
+        }
+    }
+    
+    func didFinishRequestWithError() {
+        
+    }
+    
     func willSwitchToErrorMode() {
         errorModeSwitch()
     }

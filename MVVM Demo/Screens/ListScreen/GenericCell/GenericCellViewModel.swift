@@ -12,7 +12,7 @@ protocol GenericCellsParentViewModelDelegate: AnyObject {
 }
 
 protocol GenericCellViewModelDelegate: AnyObject {
-    func didEnterValidNumber(_ number: Int)
+    func didEnterValidInput(_ input: Any)
 }
 
 class GenericCellViewModel {
@@ -20,18 +20,14 @@ class GenericCellViewModel {
     weak var parentViewModelDelegate: GenericCellsParentViewModelDelegate?
     weak var delegate: GenericCellViewModelDelegate?
     private let uuid = UUID()
+    var data: Any?
     
-    func loadNumbers(_ number: Int) {
-        delegate?.didEnterValidNumber(number)
+    func loadData(_ data: Any) {
+        delegate?.didEnterValidInput(data)
     }
     
     func userDidSelectCell() {
         parentViewModelDelegate?.didTapCell(viewModel: self)
-    }
-    
-    func getIntNumberFromString(string: String) -> Int? {
-        guard let number = Int(string) else { return nil }
-        return number
     }
 }
 

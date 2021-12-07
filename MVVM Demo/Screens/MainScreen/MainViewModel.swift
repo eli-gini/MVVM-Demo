@@ -25,15 +25,15 @@ class MainViewModel {
         mainCoordinator.mainCoordinatorDelegate = self
     }
     
-    func presentNumbersListVC() {
+    func userDidTapStartButton() {
         didPressStart?()
     }
     
-    func presentImagesCollectionVC() {
-        guard let number = numberReceived else {
-            return
-        }
-        didPressDataAdded?(number)
+    func userDidTapDataPassedButton() {
+//        guard let number = numberReceived else {
+//            return
+//        }
+        didPressDataAdded?(5)
     }
     
     private func getStringNumber(_ number: Int)-> String {

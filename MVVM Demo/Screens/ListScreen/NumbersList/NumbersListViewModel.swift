@@ -12,8 +12,8 @@ class NumbersListViewModel: ListViewModel {
     
     var userDidSelectCell: ((Any)-> Void)?
     var cellViewModels: [GenericCellViewModel] = []
-    var errorMode: Bool = false
     var delegate: ListViewModelDelegate?
+    var isErrorMode: Bool = false
     private var validatedNumber: Int?
     
     func userDidEnterText(_ text: String?) {
@@ -23,12 +23,13 @@ class NumbersListViewModel: ListViewModel {
             validatedNumber = nil
         }
     }
-
-    func userDidTapGoButton() {
+    
+    func userDidTapGoButton(handler: (() -> Void)?) {
         if validatedNumber == nil {
             delegate?.willSwitchToErrorMode()
         } else {
             makeCellViewModels()
+            handler?()
         }
     }
     
@@ -39,13 +40,25 @@ class NumbersListViewModel: ListViewModel {
     
     func makeCellViewModels() {
         if let numberOfCells = validatedNumber {
-            for _ in 0...(numberOfCells - 1) {
-                let newViewModel = GenericCellViewModel()
-                newViewModel.parentViewModelDelegate = self
-                cellViewModels.append(newViewModel)
+            for i in 0..<numberOfCells {
+                let newCellViewModel = GenericCellViewModel()
+                newCellViewModel.parentViewModelDelegate = self
+                newCellViewModel.data = i
+                cellViewModels.append(newCellViewModel)
             }
         }
     }
+    
+    func numberOfItemsInSection(section: Int) -> Int {
+        return cellViewModels.count
+    }
+    
+    func getCellViewModel(at indexPath: IndexPath) -> GenericCellViewModel? {
+        guard cellViewModels.indices.contains(indexPath.row) else { return nil }
+        return cellViewModels[indexPath.row]
+    }
+    
+    func prepareData() {}
 }
 
 extension NumbersListViewModel: GenericCellsParentViewModelDelegate {

@@ -9,14 +9,9 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    var viewModel: MainViewModel
+    private var viewModel: MainViewModel
     @IBOutlet private weak var buttonLabel: UILabel!
     @IBOutlet private weak var dataPassedButton: UIButton!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setUpView()
-    }
     
     init (viewModel: MainViewModel) {
         self.viewModel = viewModel
@@ -25,6 +20,11 @@ class MainViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUpView()
     }
     
     private func setUpView() {
@@ -52,11 +52,11 @@ class MainViewController: UIViewController {
     }
         
     @IBAction private func startButtonTapped(sender: UIButton) {
-        viewModel.presentNumbersListVC()
+        viewModel.userDidTapStartButton()
     }
     
     @IBAction private func dataPassedButtonTapped(_ sender: UIButton) {
-        viewModel.presentImagesCollectionVC()
+        viewModel.userDidTapDataPassedButton()
     }
 }
 

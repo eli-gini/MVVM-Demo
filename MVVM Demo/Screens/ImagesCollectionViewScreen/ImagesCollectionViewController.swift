@@ -13,7 +13,15 @@ class DiffableDataSource: UICollectionViewDiffableDataSource<Int, ImageCellViewM
 class ImagesCollectionViewController: UIViewController, Reusable {
     
     @IBOutlet private weak var imagesCollectionView: UICollectionView!
-    var viewModel: ImagesCollectionViewModel
+    private var viewModel: ImagesCollectionViewModel
+    
+    private lazy var dataSource = DiffableDataSource(collectionView: imagesCollectionView) { collectionView, indexPath, itemIdentifier in
+        let cell: ImageCell = collectionView.dequeueReusableCell(for: indexPath)
+        guard let cellVM = self.viewModel.getCellViewModel(at: indexPath)
+        else { return UICollectionViewCell() }
+        cell.configure(viewModel: cellVM)
+        return cell
+    }
     
     init(viewModel: ImagesCollectionViewModel) {
         self.viewModel = viewModel
@@ -22,14 +30,6 @@ class ImagesCollectionViewController: UIViewController, Reusable {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    private lazy var dataSource = DiffableDataSource(collectionView: imagesCollectionView) { collectionView, indexPath, itemIdentifier in
-        let cell: ImageCell = collectionView.dequeueReusableCell(for: indexPath)
-        guard let cellVM = self.viewModel.getCellViewModel(at: indexPath)
-        else { return UICollectionViewCell() }
-        cell.configure(viewModel: cellVM)
-        return cell
     }
     
     override func viewDidLoad() {

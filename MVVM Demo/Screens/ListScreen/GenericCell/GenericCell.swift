@@ -10,7 +10,7 @@ import Reusable
 
 class GenericCell: UITableViewCell, NibReusable {
     
-    @IBOutlet weak var numberCellLabel: UILabel!
+    @IBOutlet weak var genericCellLabel: UILabel!
     var viewModel: GenericCellViewModel?
     
     override func awakeFromNib() {
@@ -18,10 +18,10 @@ class GenericCell: UITableViewCell, NibReusable {
         setUpTapGesture()
     }
     
-    func configure(viewModel: GenericCellViewModel, indexPath: IndexPath) {
+    func configure(viewModel: GenericCellViewModel, data: Any) {
         self.viewModel = viewModel
         viewModel.delegate = self
-        viewModel.loadNumbers(indexPath.row)
+        viewModel.loadData(data)
         
     }
     
@@ -37,7 +37,11 @@ class GenericCell: UITableViewCell, NibReusable {
 
 extension GenericCell: GenericCellViewModelDelegate {
     
-    func didEnterValidNumber(_ number: Int) {
-        numberCellLabel.text = number.description
+    func didEnterValidInput(_ input: Any) {
+        if let numericInput = input as? Int {
+            genericCellLabel.text = numericInput.description
+        } else if let stringInput = input as? String {
+            genericCellLabel.text = stringInput
+        }
     }
 }
