@@ -11,19 +11,19 @@ protocol ListViewModel: AnyObject {
     var userDidSelectCell: ((Any) -> Void)? {get set}
     var delegate: ListViewModelDelegate? {get set}
     var isErrorMode: Bool { get set }
-    var cellViewModels: [GenericCellViewModel] {get set}
+    var cellViewModels: [GenericTableCellViewModel] {get set}
     func userDidEnterText(_ text: String?)
     func userDidTapGoButton(handler: (()->Void)?)
     func makeCellViewModels()
     func numberOfItemsInSection(section: Int) -> Int
-    func getCellViewModel(at indexPath: IndexPath) -> GenericCellViewModel?
+    func getCellViewModel(at indexPath: IndexPath) -> GenericTableCellViewModel?
     func prepareData()
 }
 
 extension ListViewModel {
-    private(set) var cellViewModels: [GenericCellViewModel] {
+    private(set) var cellViewModels: [GenericTableCellViewModel] {
         get {
-            return [GenericCellViewModel]()
+            return [GenericTableCellViewModel]()
             }
         set { }
     }

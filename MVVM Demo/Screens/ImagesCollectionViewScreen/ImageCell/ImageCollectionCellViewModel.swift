@@ -7,20 +7,20 @@
 
 import UIKit
 
-protocol ImageCellViewModelDelegate: AnyObject {
+protocol ImageCollectionCellViewModelDelegate: AnyObject {
     func didLoadImage(_ image: UIImage)
     func didFailWithError()
 }
 
-protocol ImagesCellParentViewModelDelegate: AnyObject {
-    func didTap(imageCellViewModel: ImageCellViewModel)
-    func didLongPress(imageCellViewModel: ImageCellViewModel)
+protocol ImagesCollectionCellParentViewModelDelegate: AnyObject {
+    func didTap(imageCellViewModel: ImageCollectionCellViewModel)
+    func didLongPress(imageCellViewModel: ImageCollectionCellViewModel)
 }
 
-class ImageCellViewModel {
+class ImageCollectionCellViewModel {
     
-    weak var parentViewModelDelegate: ImagesCellParentViewModelDelegate?
-    weak var delegate: ImageCellViewModelDelegate?
+    weak var parentViewModelDelegate: ImagesCollectionCellParentViewModelDelegate?
+    weak var delegate: ImageCollectionCellViewModelDelegate?
     private let imageLoader: ImageDownloadService
     private let uuid = UUID()
     private var isLoadedImage = false
@@ -51,13 +51,13 @@ class ImageCellViewModel {
     }
 }
 
-extension ImageCellViewModel: Hashable {
+extension ImageCollectionCellViewModel: Hashable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(uuid)
     }
     
-    static func == (lhs: ImageCellViewModel, rhs: ImageCellViewModel) -> Bool {
+    static func == (lhs: ImageCollectionCellViewModel, rhs: ImageCollectionCellViewModel) -> Bool {
         return rhs.uuid == lhs.uuid
     }
     

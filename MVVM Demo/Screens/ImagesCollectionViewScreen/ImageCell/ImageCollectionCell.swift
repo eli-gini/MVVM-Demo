@@ -8,17 +8,17 @@
 import UIKit
 import Reusable
 
-class ImageCell: UICollectionViewCell, NibReusable {
+class ImageCollectionCell: UICollectionViewCell, NibReusable {
     
     @IBOutlet private weak var cellImageView: UIImageView!
-    private var viewModel: ImageCellViewModel?
+    private var viewModel: ImageCollectionCellViewModel?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setUpGestures()
     }
     
-    func configure(viewModel: ImageCellViewModel) {
+    func configure(viewModel: ImageCollectionCellViewModel) {
         self.viewModel = viewModel
         viewModel.delegate = self
         viewModel.load()
@@ -52,12 +52,12 @@ class ImageCell: UICollectionViewCell, NibReusable {
     }
 }
 
-extension ImageCell: ImageCellViewModelDelegate {
+extension ImageCollectionCell: ImageCollectionCellViewModelDelegate {
     func didLoadImage(_ image: UIImage) {
         cellImageView.image = image
     }
     
     func didFailWithError() {
-        self.contentView.backgroundColor = .systemRed
+        contentView.backgroundColor = .systemRed
     }
 }

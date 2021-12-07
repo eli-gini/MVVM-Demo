@@ -7,18 +7,18 @@
 
 import Foundation
 
-protocol GenericCellsParentViewModelDelegate: AnyObject {
-    func didTapCell(viewModel: GenericCellViewModel)
+protocol GenericTableCellsParentViewModelDelegate: AnyObject {
+    func didTapCell(viewModel: GenericTableCellViewModel)
 }
 
-protocol GenericCellViewModelDelegate: AnyObject {
+protocol GenericTableCellViewModelDelegate: AnyObject {
     func didEnterValidInput(_ input: Any)
 }
 
-class GenericCellViewModel {
+class GenericTableCellViewModel {
     
-    weak var parentViewModelDelegate: GenericCellsParentViewModelDelegate?
-    weak var delegate: GenericCellViewModelDelegate?
+    weak var parentViewModelDelegate: GenericTableCellsParentViewModelDelegate?
+    weak var delegate: GenericTableCellViewModelDelegate?
     private let uuid = UUID()
     var data: Any?
     
@@ -31,13 +31,13 @@ class GenericCellViewModel {
     }
 }
 
-extension GenericCellViewModel: Hashable {
+extension GenericTableCellViewModel: Hashable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(uuid)
     }
     
-    static func == (lhs: GenericCellViewModel, rhs: GenericCellViewModel) -> Bool {
+    static func == (lhs: GenericTableCellViewModel, rhs: GenericTableCellViewModel) -> Bool {
         return rhs.uuid == lhs.uuid
     }
 }

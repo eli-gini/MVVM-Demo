@@ -13,8 +13,8 @@ class NumbersListViewModel: ListViewModel {
     var userDidSelectCell: ((Any)-> Void)?
     var delegate: ListViewModelDelegate?
     var isErrorMode: Bool = false
-    private var validatedNumber: Int?
-    var cellViewModels: [GenericCellViewModel] = []
+    var validatedNumber: Int?
+    var cellViewModels: [GenericTableCellViewModel] = []
     
     func userDidEnterText(_ text: String?) {
         if let number = validateNumericText(text: text) {
@@ -46,7 +46,7 @@ class NumbersListViewModel: ListViewModel {
     func makeCellViewModels() {
         if let numberOfCells = validatedNumber {
             for i in 0..<numberOfCells {
-                let newCellViewModel = GenericCellViewModel()
+                let newCellViewModel = GenericTableCellViewModel()
                 newCellViewModel.parentViewModelDelegate = self
                 newCellViewModel.data = i
                 cellViewModels.append(newCellViewModel)
@@ -58,7 +58,7 @@ class NumbersListViewModel: ListViewModel {
         return cellViewModels.count
     }
     
-    func getCellViewModel(at indexPath: IndexPath) -> GenericCellViewModel? {
+    func getCellViewModel(at indexPath: IndexPath) -> GenericTableCellViewModel? {
         guard cellViewModels.indices.contains(indexPath.row) else { return nil }
         return cellViewModels[indexPath.row]
     }
@@ -66,8 +66,8 @@ class NumbersListViewModel: ListViewModel {
     func prepareData() {}
 }
 
-extension NumbersListViewModel: GenericCellsParentViewModelDelegate {
-    func didTapCell(viewModel: GenericCellViewModel) {
+extension NumbersListViewModel: GenericTableCellsParentViewModelDelegate {
+    func didTapCell(viewModel: GenericTableCellViewModel) {
         guard let index = cellViewModels.firstIndex(where: { $0 == viewModel }) else { return }
         userDidSelectCell?(index)
     }

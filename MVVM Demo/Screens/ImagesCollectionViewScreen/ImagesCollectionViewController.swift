@@ -8,15 +8,15 @@
 import UIKit
 import Reusable
 
-class DiffableDataSource: UICollectionViewDiffableDataSource<Int, ImageCellViewModel> {}
+class DiffableDataSource: UICollectionViewDiffableDataSource<Int, ImageCollectionCellViewModel> {}
 
 class ImagesCollectionViewController: UIViewController, Reusable {
     
     @IBOutlet private weak var imagesCollectionView: UICollectionView!
-    private var viewModel: ImagesCollectionViewModel
+    private let viewModel: ImagesCollectionViewModel
     
     private lazy var dataSource = DiffableDataSource(collectionView: imagesCollectionView) { collectionView, indexPath, itemIdentifier in
-        let cell: ImageCell = collectionView.dequeueReusableCell(for: indexPath)
+        let cell: ImageCollectionCell = collectionView.dequeueReusableCell(for: indexPath)
         guard let cellVM = self.viewModel.getCellViewModel(at: indexPath)
         else { return UICollectionViewCell() }
         cell.configure(viewModel: cellVM)
@@ -39,12 +39,12 @@ class ImagesCollectionViewController: UIViewController, Reusable {
     
     private func setUpView() {
         applySnapshot()
-        imagesCollectionView.register(cellType: ImageCell.self)
+        imagesCollectionView.register(cellType: ImageCollectionCell.self)
         reloadData()
     }
     
     private func applySnapshot() {
-            var snapshot = NSDiffableDataSourceSnapshot<Int, ImageCellViewModel>()
+            var snapshot = NSDiffableDataSourceSnapshot<Int, ImageCollectionCellViewModel>()
             snapshot.appendSections([0])
             snapshot.appendItems(viewModel.cellViewModels, toSection: 0)
             dataSource.apply(snapshot, animatingDifferences: true)

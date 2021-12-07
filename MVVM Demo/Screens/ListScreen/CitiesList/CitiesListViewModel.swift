@@ -12,11 +12,11 @@ class CitiesListViewModel: ListViewModel {
     var userDidSelectCell: ((Any) -> Void)?
     var delegate: ListViewModelDelegate?
     var isErrorMode: Bool = false
-    var cellViewModels: [GenericCellViewModel] = []
+    var cellViewModels: [GenericTableCellViewModel] = []
     
     private let networkManager: NetworkManager
     private var filteredNSArray = NSArray()
-    private var filteredCellViewModels: [GenericCellViewModel] = []
+    private var filteredCellViewModels: [GenericTableCellViewModel] = []
     private var citiesArray: [City] = [] {
         didSet {
             makeCellViewModels()
@@ -63,7 +63,7 @@ class CitiesListViewModel: ListViewModel {
     }
     
     func makeCellViewModels() {
-        let cellVM = GenericCellViewModel()
+        let cellVM = GenericTableCellViewModel()
         cellVM.data = citiesArray.last?.name
         cellViewModels.append(cellVM)
     }
@@ -87,7 +87,7 @@ class CitiesListViewModel: ListViewModel {
         return filteredCellViewModels.count
     }
     
-    func getCellViewModel(at indexPath: IndexPath) -> GenericCellViewModel? {
+    func getCellViewModel(at indexPath: IndexPath) -> GenericTableCellViewModel? {
         guard filteredCellViewModels.indices.contains(indexPath.row) else { return nil }
         return filteredCellViewModels[indexPath.row]
     }

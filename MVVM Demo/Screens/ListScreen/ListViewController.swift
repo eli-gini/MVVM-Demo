@@ -17,7 +17,7 @@ class ListViewController: UIViewController {
     @IBOutlet private weak var listTableView: UITableView!
     @IBOutlet private weak var listTextField: UITextField!
     
-    private var viewModel: ListViewModel
+    private let viewModel: ListViewModel
     weak var delegate: ListViewControllerDelegate?
     
     init (viewModel: ListViewModel) {
@@ -41,7 +41,7 @@ class ListViewController: UIViewController {
         viewModel.delegate = self
         listTextField.delegate = self
         listTableView.dataSource = self
-        listTableView.register(cellType: GenericCell.self)
+        listTableView.register(cellType: GenericTableCell.self)
     }
     
     @IBAction private func goButtonTapped(_ sender: UIButton) {
@@ -94,7 +94,7 @@ extension ListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: GenericCell = listTableView.dequeueReusableCell(for: indexPath)
+        let cell: GenericTableCell = listTableView.dequeueReusableCell(for: indexPath)
         guard let cellVM = viewModel.getCellViewModel(at: indexPath) else { return UITableViewCell() }
         cell.configure(viewModel: cellVM, data: cellVM.data as Any)
         return cell

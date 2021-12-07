@@ -14,10 +14,10 @@
 		AD17DDCF275389BF00806A8E /* ImagesCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17DDCE275389BF00806A8E /* ImagesCollectionViewModel.swift */; };
 		AD17DDD2275389FA00806A8E /* ImagesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17DDD0275389FA00806A8E /* ImagesCollectionViewController.swift */; };
 		AD17DDD3275389FA00806A8E /* ImagesCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD17DDD1275389FA00806A8E /* ImagesCollectionViewController.xib */; };
-		AD17DDD727538C6200806A8E /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17DDD527538C6200806A8E /* ImageCell.swift */; };
-		AD17DDD827538C6200806A8E /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD17DDD627538C6200806A8E /* ImageCell.xib */; };
-		AD17DDFA2753D64000806A8E /* ImageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17DDF92753D63F00806A8E /* ImageCellViewModel.swift */; };
-		AD17DDFC2753DE9000806A8E /* GenericCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17DDFB2753DE9000806A8E /* GenericCellViewModel.swift */; };
+		AD17DDD727538C6200806A8E /* ImageCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17DDD527538C6200806A8E /* ImageCollectionCell.swift */; };
+		AD17DDD827538C6200806A8E /* ImageCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD17DDD627538C6200806A8E /* ImageCollectionCell.xib */; };
+		AD17DDFA2753D64000806A8E /* ImageCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17DDF92753D63F00806A8E /* ImageCollectionCellViewModel.swift */; };
+		AD17DDFC2753DE9000806A8E /* GenericTableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17DDFB2753DE9000806A8E /* GenericTableCellViewModel.swift */; };
 		AD27C3EE275CE38F0038D57B /* ListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD27C3ED275CE38F0038D57B /* ListViewModelProtocol.swift */; };
 		AD27C3F0275CF6520038D57B /* CitiesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD27C3EF275CF6520038D57B /* CitiesListViewModel.swift */; };
 		AD27C3F2275CFEB90038D57B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD27C3F1275CFEB90038D57B /* NetworkManager.swift */; };
@@ -34,8 +34,8 @@
 		AD78F142274D4A7B00012EC4 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F140274D4A7B00012EC4 /* ListViewController.swift */; };
 		AD78F143274D4A7B00012EC4 /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD78F141274D4A7B00012EC4 /* ListViewController.xib */; };
 		AD78F145274D4B6F00012EC4 /* NumbersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F144274D4B6F00012EC4 /* NumbersListViewModel.swift */; };
-		AD78F14E274E312C00012EC4 /* GenericCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F14C274E312C00012EC4 /* GenericCell.swift */; };
-		AD78F14F274E312C00012EC4 /* GenericCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD78F14D274E312C00012EC4 /* GenericCell.xib */; };
+		AD78F14E274E312C00012EC4 /* GenericTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F14C274E312C00012EC4 /* GenericTableCell.swift */; };
+		AD78F14F274E312C00012EC4 /* GenericTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD78F14D274E312C00012EC4 /* GenericTableCell.xib */; };
 		AD78F152274E3C8600012EC4 /* TextFieldError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD78F151274E3C8600012EC4 /* TextFieldError.swift */; };
 		AD8628CD2758A43000010D43 /* ImageDownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8628CC2758A42F00010D43 /* ImageDownloadService.swift */; };
 /* End PBXBuildFile section */
@@ -50,10 +50,10 @@
 		AD17DDCE275389BF00806A8E /* ImagesCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCollectionViewModel.swift; sourceTree = "<group>"; };
 		AD17DDD0275389FA00806A8E /* ImagesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCollectionViewController.swift; sourceTree = "<group>"; };
 		AD17DDD1275389FA00806A8E /* ImagesCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImagesCollectionViewController.xib; sourceTree = "<group>"; };
-		AD17DDD527538C6200806A8E /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
-		AD17DDD627538C6200806A8E /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
-		AD17DDF92753D63F00806A8E /* ImageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCellViewModel.swift; sourceTree = "<group>"; };
-		AD17DDFB2753DE9000806A8E /* GenericCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericCellViewModel.swift; sourceTree = "<group>"; };
+		AD17DDD527538C6200806A8E /* ImageCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionCell.swift; sourceTree = "<group>"; };
+		AD17DDD627538C6200806A8E /* ImageCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionCell.xib; sourceTree = "<group>"; };
+		AD17DDF92753D63F00806A8E /* ImageCollectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionCellViewModel.swift; sourceTree = "<group>"; };
+		AD17DDFB2753DE9000806A8E /* GenericTableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableCellViewModel.swift; sourceTree = "<group>"; };
 		AD27C3ED275CE38F0038D57B /* ListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModelProtocol.swift; sourceTree = "<group>"; };
 		AD27C3EF275CF6520038D57B /* CitiesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesListViewModel.swift; sourceTree = "<group>"; };
 		AD27C3F1275CFEB90038D57B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -72,8 +72,8 @@
 		AD78F140274D4A7B00012EC4 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		AD78F141274D4A7B00012EC4 /* ListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
 		AD78F144274D4B6F00012EC4 /* NumbersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersListViewModel.swift; sourceTree = "<group>"; };
-		AD78F14C274E312C00012EC4 /* GenericCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericCell.swift; sourceTree = "<group>"; };
-		AD78F14D274E312C00012EC4 /* GenericCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenericCell.xib; sourceTree = "<group>"; };
+		AD78F14C274E312C00012EC4 /* GenericTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableCell.swift; sourceTree = "<group>"; };
+		AD78F14D274E312C00012EC4 /* GenericTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenericTableCell.xib; sourceTree = "<group>"; };
 		AD78F151274E3C8600012EC4 /* TextFieldError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldError.swift; sourceTree = "<group>"; };
 		AD8628CC2758A42F00010D43 /* ImageDownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,9 +122,9 @@
 		AD17DDD427538C2B00806A8E /* ImageCell */ = {
 			isa = PBXGroup;
 			children = (
-				AD17DDF92753D63F00806A8E /* ImageCellViewModel.swift */,
-				AD17DDD527538C6200806A8E /* ImageCell.swift */,
-				AD17DDD627538C6200806A8E /* ImageCell.xib */,
+				AD17DDF92753D63F00806A8E /* ImageCollectionCellViewModel.swift */,
+				AD17DDD527538C6200806A8E /* ImageCollectionCell.swift */,
+				AD17DDD627538C6200806A8E /* ImageCollectionCell.xib */,
 			);
 			path = ImageCell;
 			sourceTree = "<group>";
@@ -225,9 +225,9 @@
 		AD78F156274E815700012EC4 /* GenericCell */ = {
 			isa = PBXGroup;
 			children = (
-				AD17DDFB2753DE9000806A8E /* GenericCellViewModel.swift */,
-				AD78F14C274E312C00012EC4 /* GenericCell.swift */,
-				AD78F14D274E312C00012EC4 /* GenericCell.xib */,
+				AD17DDFB2753DE9000806A8E /* GenericTableCellViewModel.swift */,
+				AD78F14C274E312C00012EC4 /* GenericTableCell.swift */,
+				AD78F14D274E312C00012EC4 /* GenericTableCell.xib */,
 			);
 			path = GenericCell;
 			sourceTree = "<group>";
@@ -327,10 +327,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD78F14F274E312C00012EC4 /* GenericCell.xib in Resources */,
+				AD78F14F274E312C00012EC4 /* GenericTableCell.xib in Resources */,
 				AD78F143274D4A7B00012EC4 /* ListViewController.xib in Resources */,
 				AD78F11E274D318C00012EC4 /* Assets.xcassets in Resources */,
-				AD17DDD827538C6200806A8E /* ImageCell.xib in Resources */,
+				AD17DDD827538C6200806A8E /* ImageCollectionCell.xib in Resources */,
 				AD17DDD3275389FA00806A8E /* ImagesCollectionViewController.xib in Resources */,
 				AD78F136274D3D6900012EC4 /* MainViewController.xib in Resources */,
 			);
@@ -392,9 +392,9 @@
 				AD27C3F2275CFEB90038D57B /* NetworkManager.swift in Sources */,
 				AD17DDCF275389BF00806A8E /* ImagesCollectionViewModel.swift in Sources */,
 				AD78F145274D4B6F00012EC4 /* NumbersListViewModel.swift in Sources */,
-				AD17DDFA2753D64000806A8E /* ImageCellViewModel.swift in Sources */,
+				AD17DDFA2753D64000806A8E /* ImageCollectionCellViewModel.swift in Sources */,
 				AD78F142274D4A7B00012EC4 /* ListViewController.swift in Sources */,
-				AD17DDFC2753DE9000806A8E /* GenericCellViewModel.swift in Sources */,
+				AD17DDFC2753DE9000806A8E /* GenericTableCellViewModel.swift in Sources */,
 				AD78F13F274D429000012EC4 /* MainCoordinator.swift in Sources */,
 				AD27C3EE275CE38F0038D57B /* ListViewModelProtocol.swift in Sources */,
 				AD8628CD2758A43000010D43 /* ImageDownloadService.swift in Sources */,
@@ -402,9 +402,9 @@
 				AD27C3F7275D04AF0038D57B /* City.swift in Sources */,
 				AD27C3F5275D02F30038D57B /* CitiesData.swift in Sources */,
 				AD78F13D274D426A00012EC4 /* CoordinatorProtocol.swift in Sources */,
-				AD17DDD727538C6200806A8E /* ImageCell.swift in Sources */,
+				AD17DDD727538C6200806A8E /* ImageCollectionCell.swift in Sources */,
 				AD17DDC727536DB800806A8E /* UILabelExtension.swift in Sources */,
-				AD78F14E274E312C00012EC4 /* GenericCell.swift in Sources */,
+				AD78F14E274E312C00012EC4 /* GenericTableCell.swift in Sources */,
 				AD27C3F0275CF6520038D57B /* CitiesListViewModel.swift in Sources */,
 				AD17DDC92753847400806A8E /* CGFloatExtension.swift in Sources */,
 				AD78F117274D318900012EC4 /* SceneDelegate.swift in Sources */,

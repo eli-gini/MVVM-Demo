@@ -9,9 +9,9 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    private var viewModel: MainViewModel
     @IBOutlet private weak var buttonLabel: UILabel!
     @IBOutlet private weak var dataPassedButton: UIButton!
+    private let viewModel: MainViewModel
     
     init (viewModel: MainViewModel) {
         self.viewModel = viewModel

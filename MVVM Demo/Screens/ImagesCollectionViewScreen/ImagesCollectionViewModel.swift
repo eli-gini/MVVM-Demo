@@ -12,7 +12,7 @@ class ImagesCollectionViewModel {
     private var selectedNumber: Int
     var updateCellViewModels: (()->())?
     var didTapImageCell: (()->Void)?
-    var cellViewModels: [ImageCellViewModel] = []
+    var cellViewModels: [ImageCollectionCellViewModel] = []
     
     init(selectedNumber: Int) {
         self.selectedNumber = selectedNumber
@@ -22,13 +22,13 @@ class ImagesCollectionViewModel {
     private func makeCellViewModels() {
         let imageLoader = ImageDownloadService()
         for _ in 0...selectedNumber - 1 {
-            let newViewModel = ImageCellViewModel(imageLoader: imageLoader)
+            let newViewModel = ImageCollectionCellViewModel(imageLoader: imageLoader)
             newViewModel.parentViewModelDelegate = self
             cellViewModels.append(newViewModel)
         }
     }
     
-    func getCellViewModel(at indexPath: IndexPath) -> ImageCellViewModel? {
+    func getCellViewModel(at indexPath: IndexPath) -> ImageCollectionCellViewModel? {
         guard cellViewModels.indices.contains(indexPath.row) else { return nil }
         return cellViewModels[indexPath.row]
     }
@@ -38,12 +38,12 @@ class ImagesCollectionViewModel {
     }
 }
 
-extension ImagesCollectionViewModel: ImagesCellParentViewModelDelegate {
-    func didTap(imageCellViewModel: ImageCellViewModel) {
+extension ImagesCollectionViewModel: ImagesCollectionCellParentViewModelDelegate {
+    func didTap(imageCellViewModel: ImageCollectionCellViewModel) {
         didTapImageCell?()
     }
     
-    func didLongPress(imageCellViewModel: ImageCellViewModel) {
+    func didLongPress(imageCellViewModel: ImageCollectionCellViewModel) {
         cellViewModels.removeAll(where: { $0 == imageCellViewModel })
         updateCellViewModels?()
     }
