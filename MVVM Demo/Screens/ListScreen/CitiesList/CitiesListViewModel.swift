@@ -8,9 +8,7 @@
 import Foundation
 
 class CitiesListViewModel: ListViewModelProtocol {
-    func userDidDismissAlert() {
-        
-    }
+
     
     
     var userDidSelectCell: ((Any) -> Void)?
@@ -19,7 +17,7 @@ class CitiesListViewModel: ListViewModelProtocol {
     private var cellViewModels: [GenericTableCellViewModel] = []
     
     private let networkManager: NetworkManager
-    private var filteredNSArray = NSArray()
+    private var filteredCitiesArray: [City] = []
     private var filteredCellViewModels: [GenericTableCellViewModel] = []
     private var citiesArray: [City] = [] {
         didSet {
@@ -45,9 +43,8 @@ class CitiesListViewModel: ListViewModelProtocol {
     //MARK: - User Interaction Methods
     
     func userDidEnterText(_ text: String?) {
-        if validateText(text) {
-            let keypath = #keyPath(City.name)
-            filteredNSArray = citiesAsNSArray.filtered(using: NSPredicate(format: "%K CONTAINS %@", keypath, text!)) as NSArray
+        if validateText(text), let text = text {
+            filterArray(using: text)
         } else { isErrorMode = !validateText(text) }
     }
     
@@ -58,19 +55,20 @@ class CitiesListViewModel: ListViewModelProtocol {
     
     
     func userDidTapGoButton(handler: (() -> Void)?) {
-        filterCellViewModels(withContentsOf: filteredNSArray)
+        filterCellViewModels(withContentsOf: filteredCitiesArray)
         handler?()
     }
     
+    func userDidDismissAlert() {
+        
+    }
     //MARK: - Filtering Methods
     
-    private func convertNSArray(_ array: NSArray) -> [City]? {
-        guard let array = array as? [City] else { return nil }
-        return array
+    private func filterArray(using text: String) {
+        filteredCitiesArray = citiesArray.filter { $0.name.contains(text) }
     }
     
-    private func filterCellViewModels(withContentsOf array: NSArray) {
-        guard let filteredCitiesArray = convertNSArray(array) else {return}
+    private func filterCellViewModels(withContentsOf array: [City]) {
         filteredCellViewModels = cellViewModels.filter{ cellVM in
             guard let data = cellVM.data as? String else {return false}
             return filteredCitiesArray.contains(where: { city in
