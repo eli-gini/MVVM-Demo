@@ -23,8 +23,8 @@ class MainCoordinator: Coordinator {
     func start() {
         let viewModel = MainViewModel(mainCoordinator: self)
         let viewController = MainViewController(viewModel: viewModel)
-        viewModel.didPressStart = { [weak self] in
-            self?.goToNumbersList()
+        viewModel.didPressStart = {
+            self.goToNumbersList()
         }
         viewModel.didPressDataAdded = { [weak self] (number) in
             self?.goToImagesCollectionView(selectedNumber: number)
@@ -37,7 +37,7 @@ class MainCoordinator: Coordinator {
         let viewController = ListViewController(viewModel: viewModel)
         viewModel.userDidSelectCell = { [weak self] (selectedNumber) in
             self?.mainCoordinatorDelegate?.didPerformAction(with: selectedNumber)
-            self?.navigationController.popToRootViewController(animated: true)
+            self?.navigationController.popViewController(animated: true)
         }
         navigationController.pushViewController(viewController, animated: true)
     }
@@ -55,6 +55,10 @@ class MainCoordinator: Coordinator {
         let networkManager = NetworkManager()
         let viewModel = CitiesListViewModel(networkManager: networkManager)
         let viewController = ListViewController(viewModel: viewModel)
+        viewModel.userDidSelectCell = { [weak self] (selectedCell) in
+            self?.mainCoordinatorDelegate?.didPerformAction(with: selectedCell)
+            self?.navigationController.popToRootViewController(animated: true)
+        }
         navigationController.pushViewController(viewController, animated: true)
     }
 }

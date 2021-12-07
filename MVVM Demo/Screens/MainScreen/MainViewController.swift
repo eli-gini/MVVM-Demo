@@ -9,7 +9,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    @IBOutlet private weak var buttonLabel: UILabel!
+    @IBOutlet private weak var startButton: UIButton!
     @IBOutlet private weak var dataPassedButton: UIButton!
     private let viewModel: MainViewModel
     
@@ -29,8 +29,6 @@ class MainViewController: UIViewController {
     
     private func setUpView() {
         viewModel.delegate = self
-        configureTapGesture()
-        configureDataPassedButton()
     }
     
     @objc private func changeToRandomBackGroundColor() {
@@ -45,10 +43,21 @@ class MainViewController: UIViewController {
     
     private func configureDataPassedButton() {
         dataPassedButton.backgroundColor = .systemGreen
-        dataPassedButton.layer.cornerRadius = 20
+        dataPassedButton.layer.cornerRadius = 20.0
         dataPassedButton.layer.shadowColor = UIColor.gray.cgColor
-        dataPassedButton.layer.shadowOffset = CGSize(width: 5, height: 5)
+        dataPassedButton.layer.shadowOffset = CGSize(width: 5.0, height: 5.0)
         dataPassedButton.layer.shadowOpacity = 0.8
+        configureTapGesture()
+    }
+    
+    private func updateButtonTitle(_ button: UIButton, title: String) {
+        button.setTitle(title, for: .normal)
+    }
+    
+    private func unhideDataPassedButton() {
+        dataPassedButton.isHidden = false
+        dataPassedButton.titleLabel?.flash()
+        configureDataPassedButton()
     }
         
     @IBAction private func startButtonTapped(sender: UIButton) {
@@ -61,10 +70,12 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: MainViewModelDelegate {
-    func viewWillUpdate(title: String) {
-        buttonLabel.text = title
-        
-        dataPassedButton.isHidden = false
-        dataPassedButton.titleLabel?.flash()
+    func buttonWillUpdate<T>(using data: T) {
+        if let number = data as? Int {
+            updateButtonTitle(startButton, title: number.description)
+            unhideDataPassedButton()
+        } else if let title = data as? String {
+            updateButtonTitle(dataPassedButton, title: title)
+        }
     }
 }

@@ -17,10 +17,10 @@ class ListViewController: UIViewController {
     @IBOutlet private weak var listTableView: UITableView!
     @IBOutlet private weak var listTextField: UITextField!
     
-    private let viewModel: ListViewModel
+    private let viewModel: ListViewModelProtocol
     weak var delegate: ListViewControllerDelegate?
     
-    init (viewModel: ListViewModel) {
+    init (viewModel: ListViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -48,7 +48,6 @@ class ListViewController: UIViewController {
         viewModel.userDidTapGoButton { [weak self] in
             DispatchQueue.main.async {
                 self?.listTableView.reloadData()
-                
             }
         }
     }
@@ -62,8 +61,8 @@ class ListViewController: UIViewController {
     
     private func createAlert(message: String) -> UIAlertController {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .cancel, handler: { _ in
-            self.toggleErrorMode()
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: { [weak self] _ in
+            self?.viewModel.userDidDismissAlert()
         })
         alert.addAction(action)
         return alert
@@ -71,18 +70,15 @@ class ListViewController: UIViewController {
     
     //MARK: - Error Mode Methods
     
-    private func manageBackgroundColor() {
-        view.backgroundColor = viewModel.isErrorMode ? .systemRed : .systemBackground
+    private func updateBackgroundColor(isErrorState: Bool) {
+        view.backgroundColor = isErrorState ? .systemRed : .systemBackground
     }
     
-    private func errorModeSwitch() {
-        toggleErrorMode()
-        showAlert(message: TextFieldError.invalidCharacter.description)
-    }
-    
-    private func toggleErrorMode() {
-        viewModel.isErrorMode = !viewModel.isErrorMode
-        manageBackgroundColor()
+    private func errorModeSwitched(_ isErrorState: Bool) {
+        if isErrorState {
+            showAlert(message: TextFieldError.invalidCharacter.description)
+        }
+        updateBackgroundColor(isErrorState: isErrorState)
     }
 }
 
@@ -122,8 +118,8 @@ extension ListViewController: ListViewModelDelegate {
         
     }
     
-    func willSwitchToErrorMode() {
-        errorModeSwitch()
+    func updateErrorMode(_ isErrorMode: Bool) {
+        errorModeSwitched(isErrorMode)
     }
 }
 

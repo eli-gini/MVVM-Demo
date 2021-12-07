@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainViewModelDelegate: AnyObject {
-    func viewWillUpdate(title: String)
+    func buttonWillUpdate<T: Any>(using data: T)
 }
 
 class MainViewModel {
@@ -16,9 +16,9 @@ class MainViewModel {
     weak var delegate: MainViewModelDelegate?
     var didPressStart: (()->Void)?
     var didPressDataAdded: ((Int)->Void)?
+    private var buttonWillUpdate: ((UIButton, String)->Void)?
     private var numberReceived: Int?
-    // keep reference to mainCoordinator?
-    private var mainCoordinator: MainCoordinator
+    weak var mainCoordinator: MainCoordinator?
     
     init(mainCoordinator: MainCoordinator) {
         self.mainCoordinator = mainCoordinator
@@ -30,14 +30,12 @@ class MainViewModel {
     }
     
     func userDidTapDataPassedButton() {
-        guard let number = numberReceived else {
-            return
-        }
+        guard let number = numberReceived else { return }
         didPressDataAdded?(number)
     }
     
-    private func getStringNumber(_ number: Int)-> String {
-        return String(number)
+    private func updateLabel(label: UILabel, title: String) {
+        label.text = title
     }
 }
 
@@ -45,7 +43,10 @@ extension MainViewModel: MainCoordinatorDelegate {
     func didPerformAction<T>(with data: T) {
         if let number = data as? Int {
             numberReceived = number
-            delegate?.viewWillUpdate(title: number.description)
+            delegate?.buttonWillUpdate(using: number)
+        } else if let text = data as? String {
+            delegate?.buttonWillUpdate(using: text)
         }
+        
     }
 }

@@ -7,30 +7,19 @@
 
 import Foundation
 
-protocol ListViewModel: AnyObject {
+protocol ListViewModelProtocol: AnyObject {
     var userDidSelectCell: ((Any) -> Void)? {get set}
     var delegate: ListViewModelDelegate? {get set}
-    var isErrorMode: Bool { get set }
-    var cellViewModels: [GenericTableCellViewModel] {get set}
+    func prepareData()
     func userDidEnterText(_ text: String?)
     func userDidTapGoButton(handler: (()->Void)?)
-    func makeCellViewModels()
+    func userDidDismissAlert()
     func numberOfItemsInSection(section: Int) -> Int
     func getCellViewModel(at indexPath: IndexPath) -> GenericTableCellViewModel?
-    func prepareData()
-}
-
-extension ListViewModel {
-    private(set) var cellViewModels: [GenericTableCellViewModel] {
-        get {
-            return [GenericTableCellViewModel]()
-            }
-        set { }
-    }
 }
 
 protocol ListViewModelDelegate: AnyObject {
-    func willSwitchToErrorMode()
+    func updateErrorMode(_ isErrorMode: Bool)
     func didFinishSuccessfullRequest()
     func didFinishRequestWithError()
 }

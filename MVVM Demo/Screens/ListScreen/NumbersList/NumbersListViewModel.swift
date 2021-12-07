@@ -8,13 +8,12 @@
 import Foundation
 import UIKit
 
-class NumbersListViewModel: ListViewModel {
-    
+class NumbersListViewModel: ListViewModelProtocol {    
     var userDidSelectCell: ((Any)-> Void)?
     var delegate: ListViewModelDelegate?
-    var isErrorMode: Bool = false
     var validatedNumber: Int?
-    var cellViewModels: [GenericTableCellViewModel] = []
+    private var isErrorMode: Bool = false
+    private var cellViewModels: [GenericTableCellViewModel] = []
     
     func userDidEnterText(_ text: String?) {
         if let number = validateNumericText(text: text) {
@@ -26,12 +25,18 @@ class NumbersListViewModel: ListViewModel {
     
     func userDidTapGoButton(handler: (() -> Void)?) {
         if validatedNumber == nil {
-            delegate?.willSwitchToErrorMode()
+            isErrorMode = true
+            delegate?.updateErrorMode(isErrorMode)
         } else {
             resetCellViewModels()
             makeCellViewModels()
             handler?()
         }
+    }
+    
+    func userDidDismissAlert() {
+        isErrorMode = false
+        delegate?.updateErrorMode(isErrorMode)
     }
     
     private func resetCellViewModels() {
@@ -43,7 +48,7 @@ class NumbersListViewModel: ListViewModel {
         return number
     }
     
-    func makeCellViewModels() {
+    private func makeCellViewModels() {
         if let numberOfCells = validatedNumber {
             for i in 0..<numberOfCells {
                 let newCellViewModel = GenericTableCellViewModel()
@@ -53,6 +58,7 @@ class NumbersListViewModel: ListViewModel {
             }
         }
     }
+    
     
     func numberOfItemsInSection(section: Int) -> Int {
         return cellViewModels.count
