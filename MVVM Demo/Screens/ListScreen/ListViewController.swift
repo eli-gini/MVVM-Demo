@@ -45,11 +45,7 @@ class ListViewController: UIViewController {
     }
     
     @IBAction private func goButtonTapped(_ sender: UIButton) {
-        viewModel.userDidTapGoButton { [weak self] in
-            DispatchQueue.main.async {
-                self?.listTableView.reloadData()
-            }
-        }
+        viewModel.userDidTapGoButton()
     }
     
     //MARK: - UIAlertController Methods
@@ -108,7 +104,7 @@ extension ListViewController: UITextFieldDelegate {
 //MARK: NumbersListViewModelDelegate
 
 extension ListViewController: ListViewModelDelegate {
-    func didFinishSuccessfullRequest() {
+    func willUpdateScreen() {
         DispatchQueue.main.async {
             self.listTableView.reloadData()
         }

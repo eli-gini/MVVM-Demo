@@ -8,25 +8,16 @@
 import Foundation
 
 class CitiesListViewModel: ListViewModelProtocol {
-
-    
     
     var userDidSelectCell: ((Any) -> Void)?
     var delegate: ListViewModelDelegate?
     private var isErrorMode: Bool = false
     private var cellViewModels: [GenericTableCellViewModel] = []
-    
     private let networkManager: NetworkManager
-    private var filteredCitiesArray: [City] = []
-    private var filteredCellViewModels: [GenericTableCellViewModel] = []
     private var citiesArray: [City] = [] {
         didSet {
             makeCellViewModels()
-            filteredCellViewModels = cellViewModels
         }
-    }
-    private var citiesAsNSArray: NSArray {
-        citiesArray as NSArray
     }
     
     init(networkManager: NetworkManager) {
@@ -43,9 +34,9 @@ class CitiesListViewModel: ListViewModelProtocol {
     //MARK: - User Interaction Methods
     
     func userDidEnterText(_ text: String?) {
-        if validateText(text), let text = text {
-            filterArray(using: text)
-        } else { isErrorMode = !validateText(text) }
+        guard let text = text else {return}
+        emptyArrays()
+        fetchCities(with: text)
     }
     
     private func validateText(_ text: String?) -> Bool {
@@ -54,55 +45,45 @@ class CitiesListViewModel: ListViewModelProtocol {
     }
     
     
-    func userDidTapGoButton(handler: (() -> Void)?) {
-        filterCellViewModels(withContentsOf: filteredCitiesArray)
-        handler?()
+    func userDidTapGoButton() {
+        delegate?.willUpdateScreen()
+    }
+    
+    func emptyArrays() {
+        citiesArray.removeAll()
+        cellViewModels.removeAll()
     }
     
     func userDidDismissAlert() {
         
     }
-    //MARK: - Filtering Methods
-    
-    private func filterArray(using text: String) {
-        filteredCitiesArray = citiesArray.filter { $0.name.contains(text) }
-    }
-    
-    private func filterCellViewModels(withContentsOf array: [City]) {
-        filteredCellViewModels = cellViewModels.filter{ cellVM in
-            guard let data = cellVM.data as? String else {return false}
-            return filteredCitiesArray.contains(where: { city in
-                data == city.name
-            })
-        }
-    }
     
     //MARK: - Network Requests
     
     func prepareData() {
-        fetchCities()
     }
     
-    private func fetchCities() {
+    private func fetchCities(with text: String) {
         let stringURL = "https://data.gov.il/api/3/action/datastore_search?resource_id=5c78e9fa-c2e2-4771-93ff-7f400a12f7ba&limit=1266"
         networkManager.getRequest(url: stringURL) { [weak self] (response: ResultsData?, error) in
             response?.result?.records?.forEach({ [weak self] (city) in
-                let newCity = City(cityName: city.cityName)
-                self?.citiesArray.append(newCity)
+                if city.cityName.contains(text) {
+                    let newCity = City(cityName: city.cityName)
+                    self?.citiesArray.append(newCity)
+                }
             })
-            self?.delegate?.didFinishSuccessfullRequest()
         }
     }
     
     // MARK: - Datasource Methods
     
     func numberOfItemsInSection(section: Int) -> Int {
-        return filteredCellViewModels.count
+        return cellViewModels.count
     }
     
     func getCellViewModel(at indexPath: IndexPath) -> GenericTableCellViewModel? {
-        guard filteredCellViewModels.indices.contains(indexPath.row) else { return nil }
-        return filteredCellViewModels[indexPath.row]
+        guard cellViewModels.indices.contains(indexPath.row) else { return nil }
+        return cellViewModels[indexPath.row]
     }
 }
 

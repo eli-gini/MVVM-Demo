@@ -12,7 +12,7 @@ protocol ListViewModelProtocol: AnyObject {
     var delegate: ListViewModelDelegate? {get set}
     func prepareData()
     func userDidEnterText(_ text: String?)
-    func userDidTapGoButton(handler: (()->Void)?)
+    func userDidTapGoButton()
     func userDidDismissAlert()
     func numberOfItemsInSection(section: Int) -> Int
     func getCellViewModel(at indexPath: IndexPath) -> GenericTableCellViewModel?
@@ -20,6 +20,6 @@ protocol ListViewModelProtocol: AnyObject {
 
 protocol ListViewModelDelegate: AnyObject {
     func updateErrorMode(_ isErrorMode: Bool)
-    func didFinishSuccessfullRequest()
+    func willUpdateScreen()
     func didFinishRequestWithError()
 }

@@ -23,14 +23,14 @@ class NumbersListViewModel: ListViewModelProtocol {
         }
     }
     
-    func userDidTapGoButton(handler: (() -> Void)?) {
+    func userDidTapGoButton() {
         if validatedNumber == nil {
             isErrorMode = true
             delegate?.updateErrorMode(isErrorMode)
         } else {
             resetCellViewModels()
             makeCellViewModels()
-            handler?()
+            delegate?.willUpdateScreen()
         }
     }
     
